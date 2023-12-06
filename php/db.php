@@ -2,7 +2,7 @@
     $host = 'localhost';
     $user = 'root';
     $password = '';
-    $database = 'db';
+    $database = 'teamtwoone-final';
 
     $conn = mysqli_connect($host, $user, $password,$database);
 
