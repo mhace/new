@@ -1,6 +1,7 @@
-<!-- Draft! Not working atm -->
-
 <?php
+// Start a session
+session_start();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // DB credentials for WampServer
     $servername = "localhost"; 
@@ -22,6 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result->num_rows > 0) {
         // User authenticated successfully
+        // Store the user information in the session array
+        $_SESSION["login_user"] = $user;
         echo "Login successful!";
     } else {
         // Invalid credentials
