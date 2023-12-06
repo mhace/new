@@ -10,4 +10,7 @@
         echo "Error: unable to connect to Mysql  <br> ";
         echo "Message: ".mysqli_connect_error(). " <br>";
     }
+
+     // Close the connection when done
+     mysqli_close($conn);
 ?>
