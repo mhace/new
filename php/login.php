@@ -1,3 +1,5 @@
+<!-- REVISE LOGIN -->
+
 <?php
 // Start output buffering
 ob_start();
@@ -80,13 +82,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $role_id = $row["role_id"];
                 if ($role_id == 1) {
                     // Admin
-                    header("Location: admin_dashboard.php");
+                    header("Location: admin.php");
                     exit();
-                } elseif ($role_id == 2 || $role_id == 3) {
+                } elseif ($role_id == 2) {
                     // Reviewer or Requester
-                    header("Location: reviewer_requester_dashboard.php");
+                    header("Location: requester.php");
                     exit();
-                }
+                }elseif ($role_id == 3) {
+                    // Reviewer or Requester
+                    header("Location: reviewer.php");
+                    exit();
             } else {
                 // Password is incorrect
                 // Display an error message
