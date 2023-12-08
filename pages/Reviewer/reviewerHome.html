@@ -114,32 +114,89 @@
                             </div>
                         </div>
                                     <!-- List of documents -->
-                <div class="row justify-content-center px-5 mt-3">
-                    <div class="col-md-12">
-                        <div class="card shadow-2-strong">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                <table  id="menu-items-data" class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">REQUEST DATE</th>
-                                            <th scope="col">DOCUMENT TITLE</th>
-                                            <th scope="col">DOCUMENT TYPE</th>
-                                            <th scope="col">STATUS</th>
-                                            <th scope="col">ACTION</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="user-products-data" class="products-list">
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
+                                    <div class="row justify-content-center px-5 mt-3">
+                                        <div class="col-md-12">
+                                            <div class="card shadow-2-strong">
+                                                <div class="card-body">
+                                                    <div class="table-responsive">
+                                                        <table id="menu-items-data" class="table table-striped">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col">REQUEST DATE</th>
+                                                                    <th scope="col">DOCUMENT TITLE</th>
+                                                                    <th scope="col">DOCUMENT TYPE</th>
+                                                                    <th scope="col">STATUS</th>
+                                                                    <th scope="col">ACTION</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="user-products-data" class="products-list">
+                                                                <tr>
+                                                                    <td>SampleRequestDate</td>
+                                                                    <td>SampleDocumentTitle</td>
+                                                                    <td>SampleDocumentType</td>
+                                                                    <td>SampleStatus</td>
+                                                                    <td>
+                                                                        <!-- Action buttons (edit and delete) -->
+                                                                        <button class="btn btn-success" id="left" style="color:white" onclick="editInfo(index, 'SampleIndex', 'SampleMenuItemName', 'SampleMenuItemPrice', 'SampleItemType1_price', 'SampleItemType2_price')" data-toggle="modal" data-target="#editDiscountModal">
+                                                                            Edit
+                                                                        </button>
+                                                                        <button type="button" class="btn btn-danger btn-sm px-3 py-2" onclick="deleteInfo(index)">
+                                                                            <i class="bi bi-trash"></i>
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                                <!-- Add more rows as needed -->
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
             </div>
+        </div>
+    </div>
+</div>
 
-            
+<div class="modal fade" id="editDiscountModal" tabindex="-1" aria-labelledby="editDiscountModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editDiscountModalLabel">Edit Document Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="#" id="editDocumentForm">
+                    <!-- Edit Request Date -->
+                    <div class="mb-3">
+                        <label for="editRequestDate" class="form-label">Edit Request Date</label>
+                        <input type="text" class="form-control" id="editRequestDate" name="editRequestDate" placeholder="Enter new request date">
+                    </div>
+                    <!-- Edit Document Title -->
+                    <div class="mb-3">
+                        <label for="editDocumentTitle" class="form-label">Edit Document Title</label>
+                        <input type="text" class="form-control" id="editDocumentTitle" name="editDocumentTitle" placeholder="Enter new document title">
+                    </div>
+                    <!-- Edit Document Type -->
+                    <div class="mb-3">
+                        <label for="editDocumentType" class="form-label">Edit Document Type</label>
+                        <input type="text" class="form-control" id="editDocumentType" name="editDocumentType" placeholder="Enter new document type">
+                    </div>
+                    <!-- Edit Status -->
+                    <div class="mb-3">
+                        <label for="editStatus" class="form-label">Edit Status</label>
+                        <select class="form-select" id="editStatus" name="editStatus">
+                            <option value="pending">Pending</option>
+                            <option value="return">Return</option>
+                            <option value="approved">Approved</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="saveEdit()">Save changes</button>
+            </div>
         </div>
     </div>
 </div>

@@ -104,34 +104,110 @@
                      <!-- Users table Container -->
                      <div class="row justify-content-center mt-3">
                         <div class="col-md-12">
-                          <div class="card shadow-2-strong">
-                            <div class="card-body">
-                              <div class="table-responsive">
-                                <table  id="orderTable" class="table table-striped">
-                                    <thead>
-                                      <tr>
-                                        <th scope="col">ROLE</th>
-                                        <th scope="col">USERNAME</th>
-                                        <th scope="col">PASSWORD</th>
-                                        <th scope="col">FIRST NAME</th>
-                                        <th scope="col">LAST NAME</th>
-                                        <th scope="col">ACTION</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody id="user-list-data" class="users-list">
-                                       
-                                    </tbody>
-                                </table>
-                              </div>
+                            <div class="card shadow-2-strong">
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table id="orderTable" class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">ROLE</th>
+                                                    <th scope="col">USERNAME</th>
+                                                    <th scope="col">PASSWORD</th>
+                                                    <th scope="col">FIRST NAME</th>
+                                                    <th scope="col">LAST NAME</th>
+                                                    <th scope="col">ACTION</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="user-list-data" class="users-list">
+                                                <tr>
+                                                    <td>RoleValue</td>
+                                                    <td>UsernameValue</td>
+                                                    <td>PasswordValue</td>
+                                                    <td>FirstNameValue</td>
+                                                    <td>LastNameValue</td>
+                                                    <td>
+                                                        <!-- Action buttons (edit and delete) -->
+                                                        <button class="btn btn-success" id="left" style="color:white" onclick="editInfo(${index}, '${index+1}', '${element.menuItemName}', '${element.menuItemPrice}', '${element.menuItemType1_price}', '${element.menuItemType2_price}')" data-toggle="modal" data-target="#editDiscountModal">
+                                                            Edit
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger btn-sm px-3 py-2" onclick="deleteInfo(${index})">
+                                                            <i class="bi bi-trash"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <!-- Add more rows as needed -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
-                          </div>
                         </div>
-                      </div>
+                    </div>
                     <!-- Users table Container -->
                 </div>
             </div>
             <!-- admin-dashboard-column -->
 
+
+             <!-- Modal for Editing Document Information -->
+        <div class="modal fade" id="editDiscountModal">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit User</h4>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="#" id="editUserForm">
+                            <div class="inputField">
+                                <!-- Role selection dropdown -->
+                                <div class="row mb-3">
+                                    <label for="editRole" class="col-sm-3 col-form-label">Edit Role</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-select" id="editRole" name="editRole">
+                                            <option value="user">User</option>
+                                            <option value="admin">Admin</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- Username input -->
+                                <div class="row mb-3">
+                                    <label for="editUsername" class="col-sm-3 col-form-label">Edit Username</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="editUsername" name="editUsername">
+                                    </div>
+                                </div>
+                                <!-- Password input -->
+                                <div class="row mb-3">
+                                    <label for="editPassword" class="col-sm-3 col-form-label">Edit Password</label>
+                                    <div class="col-sm-9">
+                                        <input type="password" class="form-control" id="editPassword" name="editPassword">
+                                    </div>
+                                </div>
+                                <!-- First Name input -->
+                                <div class="row mb-3">
+                                    <label for="editFirstName" class="col-sm-3 col-form-label">Edit First Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="editFirstName" name="editFirstName">
+                                    </div>
+                                </div>
+                                <!-- Last Name input -->
+                                <div class="row mb-3">
+                                    <label for="editLastName" class="col-sm-3 col-form-label">Edit Last Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="editLastName" name="editLastName">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" form="editUserForm" class="btn btn-primary submit submit-editUser">Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
                <!--  Add Users Modal-->
         
     <!--Modal Form-->

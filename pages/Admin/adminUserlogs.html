@@ -96,18 +96,30 @@
                                         <tr>
                                             <th scope="col">USERNAME</th>
                                             <th scope="col">EVENT</th>
-                                            <th scope="col">DATE & TIME</th>
+                                            <th scope="col">DATE</th>
                                             <th scope="col">ACTION</th>
                                         </tr>
                                     </thead>
                                     <tbody id="user-products-data" class="products-list">
+                                        <tr>
+                                            <td>SampleUsername</td>
+                                            <td>SampleEvent</td>
+                                            <td>SampleDate</td>
+                                            <td>
+                                                <!-- Action buttons (edit and delete) -->
+                                                <button type="button" class="btn btn-danger btn-sm px-3 py-2" onclick="deleteInfo(index)">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <!-- Add more rows as needed -->
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    </div>
                 </div>
+            </div>
             </div>
         </div>
     </div>

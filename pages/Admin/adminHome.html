@@ -90,32 +90,73 @@
                             </div>
                         </div>
                                     <!-- List of documents -->
-                <div class="row justify-content-center px-5 mt-3">
-                    <div class="col-md-12">
-                        <div class="card shadow-2-strong">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                <table  id="menu-items-data" class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">DOCUMENT NO.</th>
-                                            <th scope="col">DOCUMENT TYPE</th>
-                                            <th scope="col">DATE & TIME</th>
-                                            <th scope="col">ACTION</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="user-products-data" class="products-list">
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                                    <div class="row justify-content-center px-5 mt-3">
+                                        <div class="col-md-12">
+                                            <div class="card shadow-2-strong">
+                                                <div class="card-body">
+                                                    <div class="table-responsive">
+                                                        <table id="menu-items-data" class="table table-striped">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col">DOCUMENT NO.</th>
+                                                                    <th scope="col">DOCUMENT TYPE</th>
+                                                                    <th scope="col">DATE</th>
+                                                                    <th scope="col">ACTION</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="user-products-data" class="products-list">
+                                                                <tr>
+                                                                    <td>testDocumentNo.</td>
+                                                                    <td>testDocumentType</td>
+                                                                    <td>2023/12/9</td>
+                                                                    <td>
+                                                                        <!-- Action buttons (edit and delete) -->
+                                                                        <button class="btn btn-success" id="left" style="color:white" onclick="editInfo(${index}, '${index+1}', '${element.menuItemName}', '${element.menuItemPrice}', '${element.menuItemType1_price}', '${element.menuItemType2_price}')" data-toggle="modal" data-target="#editDiscountModal">
+                                                                            Edit
+                                                                        </button>
+                                                                        <button type="button" class="btn btn-danger btn-sm px-3 py-2" onclick="deleteInfo(${index})">
+                                                                            <i class="bi bi-trash"></i>
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+            </div>
+        </div>
+
+        <!-- Modal for Editing Document Information -->
+        <div class="modal fade" id="editDiscountModal">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Document</h4>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    <div class="modal-body">
+                        <form action="#" id="editDiscountForm">
+                            <div class="inputField">
+                                <div class="row mb-3">
+                                    <label for="editDiscount" class="col-sm-3 col-form-label">Edit Date<label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="editUsername"  name="editDiscount" title="Please enter a valid integer">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" form="editDiscountForm" class="btn btn-primary submit submit-editUser">Edit</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
                     
             <!-- Logout Modal -->
         <div
