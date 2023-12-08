@@ -12,7 +12,7 @@
     --black:#000;
     --white: #fff;
     --darkGrey:#61666b;
-    --blue: rgb(60, 51, 177);
+    --blue: rgb(10, 0, 150);
 }
 
 
@@ -21,9 +21,6 @@ body {
     margin: 0;
   
 }
-
-
-/* Navbar barista */
 
 .navbar{  
     /* navbar (top) css */  
@@ -48,9 +45,6 @@ body {
 .sidebar-column{
     background-color: var(--blue)
 }
-
-/* Navbar barista */
-
 
 h3 {
     font-size: 1.2375rem;

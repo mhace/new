@@ -12,15 +12,15 @@
     --black:#000;
     --white: #fff;
     --darkGrey:#61666b;
-    --blue: rgb(10, 0, 150);
+    --blue: rgb(60, 51, 177);
 }
-
 
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
   
 }
+
 
 .navbar{  
     /* navbar (top) css */  
@@ -43,8 +43,9 @@ body {
 }
 
 .sidebar-column{
-    background-color: var(--blue)
+    background-color: var(--black);
 }
+
 
 h3 {
     font-size: 1.2375rem;
@@ -150,6 +151,12 @@ li {
     width: 100vw;
 }
 
+.active{
+    color: #000 !important;
+    background-color: white;
+}
+
+
 /* Responsive */
 
 @media (min-width:768px) {
@@ -172,6 +179,9 @@ li {
     border: 2px solid var(--black);
 }
 
+.card-body .btn{
+    float: right;
+}
 
 .card{
     
@@ -187,84 +197,4 @@ li {
 .bd-highlight button{
     padding-left: 1rem;
     padding-right: 1rem;
-}
-
-.chart-heading {
-    font-family: "Rubik", sans-serif;
-    color: #023047;
-    text-transform: uppercase;
-    font-size: 24px;
-    text-align: center;
-}
-
-.programming-stats {
-    font-family: "Rubik", sans-serif;
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    margin: 0 auto;
-    width: fit-content;
-    /* box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.3); */
-    border-radius: 20px;
-    padding: 8px 32px;
-    color: #023047;
-    transition: all 400ms ease;
-}
-
-.programming-stats:hover {
-    transform: scale(1.02);
-    box-shadow: 0 4px 16px -7px rgba(0, 0, 0, 0.3);
-}
-
-.programming-stats .details ul {
-    list-style: none;
-    padding: 0;
-}
-
-.programming-stats .details ul li {
-    font-size: 16px;
-    margin: 12px 0;
-    text-transform: uppercase;
-}
-
-.programming-stats .details .percentage {
-    font-weight: 700;
-    color: #e63946;
-}
-
-.users-label{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding-top: 10px;
-}
-
-.user-search-bar{
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.user-search-bar .align-content-center .mb-1{
-    padding-top: 5px;
-}
-
-#addUserBtn{
-    height: 50px;
-}
-
-#searchUserField{
-    height: 50px;
-}
-
-th{
-    font-size: 12px;
-    text-align: center;
-}
-
-td {
-    /* table row */
-    white-space: normal !important;
-    word-wrap: break-word;
-    vertical-align: middle;
-    text-align: center;
 }

@@ -4,9 +4,9 @@
         <!-- Required meta tag -->
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Admin Home</title>
+        <title>Reviewer Home</title>
         <!-- Favicon -->
-        <link rel="shortcut icon" href="../img/logo.png" type="stylesheet" />
+        <link rel="shortcut icon" href="/img/logo.png" type="stylesheet" />
 
         <!-- Bootstrap CSS -->
         <link
@@ -27,7 +27,7 @@
 
         <!-- icons:font awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-        <link rel="stylesheet" href="../css/adminHome.css" />
+        <link rel="stylesheet" href="/css/reviewerHome.css" />
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0"></script>
     </head>
@@ -38,20 +38,20 @@
             <aside id="sidebar">
                 <div class="h-100">
                     <div class="sidebar-logo">
-                        <a href="#">Admin</a>
+                        <a href="#">Reviewer</a>
                     </div>
                     <!-- Sidebar Navigation -->
                     <ul class="sidebar-nav">
                         <li class="sidebar-item">
-                            <a class="nav-link" href="./adminHome.html">
+                            <a class="nav-link" href="./reviewerHome.html">
                                 <span class="fas fa-home"></span>
                                 Home
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="nav-link" href="./adminUsers.html">
+                            <a class="nav-link" href="./reviewerDocument.html">
                                 <span class="bi bi-people-fill"></span>
-                                Users
+                                Document Review
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -69,14 +69,51 @@
             <div class="main">
                 <div class="container-fluid navbar-container">
                 </div>
-                    <div class="row">
-                        <div class="col users-label">
-                            <h2>
-                                Data Stored 
-                            </h2>
+                <div class="container mt-1">
+                    <div class="row justify-content-end"> <!-- Add this row to align content to the right -->
+                        <div class="col-auto">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary bi bi-bell-fill " data-bs-toggle="modal" data-bs-target="#notificationModal">
+                                Notifications
+                            </button>
                         </div>
                     </div>
-                                    <!-- List of menu items -->
+            
+                    <!-- Notification Modal -->
+                    <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="notificationModalLabel">Notifications</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="notification-content">
+                                        This is a notification message. You can customize this content as needed.
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col users-label">
+                        <h1>
+                            Document List
+                        </h1>
+                    </div>
+                </div>
+                    <div class="ps-5 row  border rounded bg-light user-search-bar">
+                        <div class="col-10 d-flex flex-wrap align-content-center">
+                            <div class="input-group mb-1">
+                                <input type="text" class="form-control" id="searchUserField" placeholder="Search Document" aria-label="User Search" aria-describedby="button-addon2">
+                                <button class="btn btn-primary" type="button" id="searchUserBtn">Search</button>
+                            </div>
+                        </div>
+                                    <!-- List of documents -->
                 <div class="row justify-content-center px-5 mt-3">
                     <div class="col-md-12">
                         <div class="card shadow-2-strong">
@@ -85,8 +122,10 @@
                                 <table  id="menu-items-data" class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th scope="col">DATA NO.</th>
-                                            <th scope="col">DATA TYPE</th>
+                                            <th scope="col">REQUEST DATE</th>
+                                            <th scope="col">DOCUMENT TITLE</th>
+                                            <th scope="col">DOCUMENT TYPE</th>
+                                            <th scope="col">STATUS</th>
                                             <th scope="col">ACTION</th>
                                         </tr>
                                     </thead>
@@ -99,6 +138,8 @@
                     </div>
                 </div>
             </div>
+
+            
         </div>
     </div>
 </div>
