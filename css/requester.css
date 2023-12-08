@@ -79,6 +79,13 @@ body {
     transition: all 0.35s ease-in-out;
 }
 
+.users-label{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 10px;
+}
+
 .sidebar-logo {
     padding: 1.15rem 1.5rem;
 }
@@ -172,7 +179,6 @@ body {
     box-shadow: 10px 10px 5px -4px rgba(0,0,0,0.17);
     border: 1.5px solid #b0b0b0;
     padding: 1rem;
-    cursor: pointer;
     padding-bottom: 2rem;
     height: 100%; 
     
@@ -184,18 +190,34 @@ body {
 }
 
 /* Uploading Files */
+.docu-title, .docu-type, .number-pages{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.docu-title input, .docu-type input, .number-pages input{
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 20px;
+}
+
 .wrapper-box{
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 15px;
     width: 100%;
-    min-height: 80vh;
+    min-height: 30vh;
+}
+
+#filewrapper h3{
+    color: #ffffff;
 }
 
 .box{
-    max-width: 500px;
-    background: rgba(21, 160, 202, 0.842);
+    max-width: 1000px;
+    background: rgb(60, 51, 177);
     padding: 30px;
     width: 100%;
     border-radius: 10px;
@@ -205,6 +227,7 @@ body {
     text-align: center;
     margin-bottom: 20px;
     font-size: 30px; 
+    color: #ffffff;
 }
 
 .uploadlabel{
@@ -269,4 +292,16 @@ body {
     text-align: center;
     cursor: pointer;
     border-radius: 50%;
+}
+
+.upload-btn{
+    padding-top: 10px;
+    padding-right: 15px;
+    float: right;
+}
+.upload-btn .upload{
+    color: #ffffff;
+    background: rgb(60, 51, 177);
+    font-size: 25px;
+    border-radius: 5px;
 }

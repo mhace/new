@@ -5,7 +5,7 @@
     <!-- Required meta tag -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Requester</title>
+    <title>Upload Document</title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="/img/logo.png" type="stylesheet" />
 
@@ -70,7 +70,7 @@
             <div class="row">
                 <div class="col users-label">
                     <h1>
-                        List of Uploaded Documents
+                        Upload a Document
                     </h1>
                 </div>
             </div>
@@ -80,19 +80,43 @@
                     <div class="card shadow-2-strong">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="menu-items-data" class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Document Title</th>
-                                            <th scope="col">Document Type</th>
-                                            <th scope="col">Number of Pages</th>
-                                            <th scope="col">Upload Date</th>
-                                            <th scope="col">Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="user-products-data" class="products-list">
-                                    </tbody>
-                                </table>
+                                <form action="">
+                                    <div class="docu-title">
+                                        <h2>Document Title:</h2>
+                                        <input type="text">
+                                    </div>
+                                    <div class="docu-type">
+                                        <h2>Document Type:</h2>
+                                        <input type="text">
+                                    </div>
+                                    <div class="number-pages">
+                                        <h2>Number of Pages:</h2>
+                                        <input type="text">
+                                    </div>
+                                    <div class="wrapper-box">
+                                        <div class="box">
+                                            <div class="input-bx">
+                                                <h2 class="upload-area-title">Upload File</h2>
+                                                <form action="">
+                                                    <input type="file" id="upload" accept=".doc, .docx, .pdf" hidden>
+                                                    <label for="upload" class="uploadlabel">
+                                                        <span><i class="fa fa-cloud-upload-alt"></i></span>
+                                                        <p>Click To Upload</p>
+                                                    </label>
+
+                                                </form>
+                                            </div>
+
+                                            <div id="filewrapper">
+                                                <h3 class="uploaded">Uploaded Document</h3>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="upload-btn">
+                                        <button class="upload">Upload</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -142,7 +166,46 @@
         });
     </script>
 
-
+    <!-- Upload File Script(Not Yet Finished-->
+    <script>
+        window.addEventListener("load", ()=>{
+            const input = document.getElementById("upload");
+            const filewrapper = document.getElementById("filewrapper");
+            
+            input.addEventListener("change", (e)=>{
+                let fileName = e.target.files[0].name;
+                let filetype = e.target.value.split(".").pop();
+                fileshow(fileName, filetype);
+            })
+    
+            const fileshow=(fileName, filetype)=>{
+                const showfileboxElem = document.createElement("div");
+                showfileboxElem.classList.add("showfilebox");
+                const leftElem = document.createElement("div");
+                leftElem.classList.add("left");
+                const filetypeElem = document.createElement("span");
+                filetypeElem.classList.add("filetype");
+                filetypeElem.innerHTML=filetype;
+                leftElem.append(filetypeElem);
+                const filetitleElem = document.createElement("h3");
+                filetitleElem.innerHTML=fileName;
+                leftElem.append(filetitleElem);
+                showfileboxElem.append(leftElem);
+                const rightElem = document.createElement("div");
+                rightElem.classList.add("right");
+                showfileboxElem.append(rightElem);
+                filewrapper.append(showfileboxElem);
+                const crossElem = document.createElement("span");
+                crossElem.innerHTML="&#215;";
+                rightElem.append(crossElem); 
+    
+                crossElem.addEventListener("click",()=>{
+                    filewrapper.removeChild(showfileboxElem);
+                })
+            }
+    
+        })
+    </script>
 
 </body>
 
