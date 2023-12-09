@@ -190,12 +190,12 @@ body {
 }
 
 /* Uploading Files */
-.docu-title, .docu-type, .number-pages{
+.docu-title, .docu-type{
     padding-left: 15px;
     padding-right: 15px;
 }
 
-.docu-title input, .docu-type input, .number-pages input{
+.docu-title input, .docu-type input{
     width: 100%;
     padding-left: 15px;
     padding-right: 15px;
