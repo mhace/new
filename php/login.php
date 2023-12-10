@@ -1,9 +1,10 @@
 <?php
     global $conn;
-
+    
     include("db.php");
-    session_start();
- 
+    session_start(); 
+    
+    
 
     if (isset($_POST)) {
         $username = trim($_POST['username']);
@@ -22,16 +23,18 @@
         if ($r== NULL){
             echo 'not found';
         }else{
-            //
+
+            
+            $_SESSION["role"] = $r[5];
             echo $r[5];
             if ($r[5] == 'Administrator'){
-                echo '<script>window.location.href = "../pages/Admin/adminHome.html"</script>';
+                echo '<script>window.location.href = "../pages/Admin/adminHome.php"</script>';
             }
             if ($r[5] == 'Requester'){
-                echo '<script>window.location.href = "../pages/Requester/requester.html"</script>';
+                echo '<script>window.location.href = "../pages/Requester/requester.php"</script>';
             }
             if ($r[5] == 'Reviewer'){
-                echo '<script>window.location.href = "../pages/Reviewer/reviewerHome.html"</script>';
+                echo '<script>window.location.href = "../pages/Reviewer/reviewerHome.php"</script>';
             }
 
 

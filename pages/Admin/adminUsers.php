@@ -1,3 +1,13 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['role'])){
+        header("Location: ../../");
+        die();
+    }
+    
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -43,19 +53,19 @@
                     <!-- Sidebar Navigation -->
                     <ul class="sidebar-nav">
                         <li class="sidebar-item">
-                            <a class="nav-link" href="./adminHome.html">
+                            <a class="nav-link" href="./adminHome.php">
                                 <span class="fas fa-home"></span>
                                 Home
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="nav-link" href="./adminUsers.html">
+                            <a class="nav-link" href="./adminUsers.php">
                                 <span class="bi bi-people-fill"></span>
                                 Users
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="nav-link" href="./adminUserlogs.html">
+                            <a class="nav-link" href="./adminUserlogs.php">
                                 <span class="bi bi-people-fill"></span>
                                 View User Logs
                             </a>
@@ -112,7 +122,6 @@
                                                 <tr>
                                                     <th scope="col">ROLE</th>
                                                     <th scope="col">USERNAME</th>
-                                                    <th scope="col">PASSWORD</th>
                                                     <th scope="col">FIRST NAME</th>
                                                     <th scope="col">LAST NAME</th>
                                                     <th scope="col">ACTION</th>
@@ -145,18 +154,17 @@
                                                         
                                                             $ar[] = "<tr><td>" .$row['userType'] . "</td>
                                                             <td>" .$row['username'] ."</td>
-                                                            <td>" .$row['password'] ."</td>
                                                             <td>" .$row['firstName'] ."</td>
                                                             <td>" .$row['lastName'] ."</td>
-                                                            <td>" .
+                                                            " .
         
                                                             '<td>
                                                                 
                             
-                                                                <button class="btn btn-success" id="left" style="color:white"  data-toggle="modal" data-target="#editDiscountModal">
+                                                                <button class="btn btn-success" data-id="'.$row["user_ID"].'" style="color:white"  data-toggle="modal" data-target="#editDiscountModal">
                                                                     Edit
                                                                 </button>
-                                                                <button type="button" class="btn btn-danger btn-sm px-3 py-2" onclick="deleteInfo(${index})">
+                                                                <button type"button" data-id="'.$row["user_ID"].'" class="btn btn-danger btn-sm px-3 py-2" data-toggle="modal" data-target="#deleteConfirmation">
                                                                     <i class="bi bi-trash"></i>
                                                                 </button>
         
@@ -205,44 +213,45 @@
                         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="#" id="editUserForm">
+                        <form action="../../php/edituser.php" id="editUserForm" method="POST">
                             <div class="inputField">
                                 <!-- Role selection dropdown -->
                                 <div class="row mb-3">
-                                    <label for="editRole" class="col-sm-3 col-form-label">Edit Role</label>
+                                    <label for="editRole" class="col-sm-3 col-form-label">new Role</label>
                                     <div class="col-sm-9">
-                                        <select class="form-select" id="editRole" name="editRole">
-                                            <option value="user">User</option>
-                                            <option value="admin">Admin</option>
+                                        <select class="form-select" id="editRole" name="role">
+                                        <option value="Administrator">Administrator</option>
+                                        <option value="Requester">Requester</option>
+                                        <option value="Reviewer">Reviewer</option>
                                         </select>
                                     </div>
                                 </div>
                                 <!-- Username input -->
                                 <div class="row mb-3">
-                                    <label for="editUsername" class="col-sm-3 col-form-label">Edit Username</label>
+                                    <label for="editUsername" class="col-sm-3 col-form-label">New Username</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="editUsername" name="editUsername">
+                                        <input type="text" class="form-control" id="editUsername" name="username">
                                     </div>
                                 </div>
                                 <!-- Password input -->
                                 <div class="row mb-3">
-                                    <label for="editPassword" class="col-sm-3 col-form-label">Edit Password</label>
+                                    <label for="editPassword" class="col-sm-3 col-form-label">new Password</label>
                                     <div class="col-sm-9">
-                                        <input type="password" class="form-control" id="editPassword" name="editPassword">
+                                        <input type="password" class="form-control" id="editPassword" name="password">
                                     </div>
                                 </div>
                                 <!-- First Name input -->
                                 <div class="row mb-3">
                                     <label for="editFirstName" class="col-sm-3 col-form-label">Edit First Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="editFirstName" name="editFirstName">
+                                        <input type="text" class="form-control" id="editFirstName" name="firstname">
                                     </div>
                                 </div>
                                 <!-- Last Name input -->
                                 <div class="row mb-3">
                                     <label for="editLastName" class="col-sm-3 col-form-label">Edit Last Name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="editLastName" name="editLastName">
+                                        <input type="text" class="form-control" id="editLastName" name="lastname">
                                     </div>
                                 </div>
                             </div>
@@ -250,7 +259,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" form="editUserForm" class="btn btn-primary submit submit-editUser">Edit</button>
+                        <button id="edit-submit" type="submit" name="id" form="editUserForm" class="btn btn-primary submit submit-editUser">Edit</button>
                     </div>
                 </div>
             </div>
@@ -268,7 +277,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <form action="../../php/admin.php" method="POST" id="userForm">
+                    <form action="../../php/adduser.php" method="POST" id="userForm">
 
                         <div class="inputField">
                              <!-- Role selection dropdown -->
@@ -337,12 +346,38 @@
                     <div class="modal-body">Are you sure you want to log out?</div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <a href="./logout" class="btn btn-danger">Log out</a>
+                        <a href="../../php/logout.php" class="btn btn-danger">Log out</a>
                     </div>
                 </div>
             </div>
         </div>
 
+
+                <!-- Delete Confrimation -->
+                <div
+            class="modal fade"
+            id="deleteConfirmation"
+            tabindex="-1"
+            role="dialog"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header custom-modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Confirmation</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Are you sure you want to delete this user?</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button id="delete-submit" href="../../php/logout.php" class="btn btn-danger">Log out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    
         <!-- custom script -->
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -360,6 +395,19 @@
                    links.classList.add('active');
                  }
              });
+
+             $(document).ready(function() {
+                $('#editDiscountModal').on('show.bs.modal', function(e) {
+                    var id = $(e.relatedTarget).data('id');
+                    $('#edit-submit').val(id)
+                });
+
+                $('#deleteConfirmation').on('show.bs.modal', function(e) {
+                    var id = $(e.relatedTarget).data('id');
+                    // $('#delete-submit"').val(id)
+                });
+            });
+
            </script>
         <script src="../js/manager-users.js"></script>
     </body>
