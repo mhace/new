@@ -11,9 +11,7 @@
     if(mysqli_connect_error()){
         echo "Error: Unable to connect to MySQL <br>";
         echo "Message: " . mysqli_connect_error() . "<br>";
-    } else {
-        echo "Connected successfully <br>";
-
+        
         // Close the connection 
         mysqli_close($conn);
     }

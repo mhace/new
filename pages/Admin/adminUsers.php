@@ -29,7 +29,7 @@
 
         <!-- icons:font awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-        <link rel="stylesheet" href="/css/adminUsers.css" />
+        <link rel="stylesheet" href="../../css/adminUsers.css" />
     </head>
 
     <body>
@@ -119,22 +119,69 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="user-list-data" class="users-list">
-                                                <tr>
-                                                    <td>RoleValue</td>
-                                                    <td>UsernameValue</td>
-                                                    <td>PasswordValue</td>
-                                                    <td>FirstNameValue</td>
-                                                    <td>LastNameValue</td>
-                                                    <td>
-                                                        <!-- Action buttons (edit and delete) -->
-                                                        <button class="btn btn-success" id="left" style="color:white" onclick="editInfo(${index}, '${index+1}', '${element.menuItemName}', '${element.menuItemPrice}', '${element.menuItemType1_price}', '${element.menuItemType2_price}')" data-toggle="modal" data-target="#editDiscountModal">
-                                                            Edit
-                                                        </button>
-                                                        <button type="button" class="btn btn-danger btn-sm px-3 py-2" onclick="deleteInfo(${index})">
-                                                            <i class="bi bi-trash"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
+                                               
+                                                   
+                                                     
+
+                                                    <?php
+                                                    
+                                                    include '../../php/db.php';
+
+                                                    $sql = "SELECT *  FROM users ";
+
+                                                    $st = $conn->prepare($sql);
+                        
+                                                    $st->execute();
+
+                                                    $res = $st->get_result();
+                                                    $r = $res->fetch_row();
+                                                    //echo $r;
+
+                                                    $ar = [];
+                                                    
+
+                                                    if ($res->num_rows > 0) {
+                                                        while ($row = $res->fetch_assoc()) {
+                                                        
+                                                            $ar[] = "<tr><td>" .$row['userType'] . "</td>
+                                                            <td>" .$row['username'] ."</td>
+                                                            <td>" .$row['password'] ."</td>
+                                                            <td>" .$row['firstName'] ."</td>
+                                                            <td>" .$row['lastName'] ."</td>
+                                                            <td>" .
+        
+                                                            '<td>
+                                                                
+                            
+                                                                <button class="btn btn-success" id="left" style="color:white"  data-toggle="modal" data-target="#editDiscountModal">
+                                                                    Edit
+                                                                </button>
+                                                                <button type="button" class="btn btn-danger btn-sm px-3 py-2" onclick="deleteInfo(${index})">
+                                                                    <i class="bi bi-trash"></i>
+                                                                </button>
+        
+                                                            </td></tr>';
+                                                            
+                                                        }
+                                                    }
+                                                    foreach ($ar as $item) {
+                                                        echo $item;
+                                                    }  ;
+                                                    
+                                                    
+                                                   
+
+
+
+                                                  
+    
+
+
+                                                
+
+                                                        ?>
+
+                                                
                                                 <!-- Add more rows as needed -->
                                             </tbody>
                                         </table>
@@ -221,9 +268,21 @@
                 </div>
 
                 <div class="modal-body">
-                    <form action="/allUsers/add" method="POST" id="userForm">
+                    <form action="../../php/admin.php" method="POST" id="userForm">
 
                         <div class="inputField">
+                             <!-- Role selection dropdown -->
+                             <div class="row mb-3">
+                                <label for="editRole" class="col-sm-3 col-form-label">Role</label>
+                                <div class="col-sm-9">
+                                    <select class="form-select" id="editRole" name="userType">
+                                        <option value="Administrator">Administrator</option>
+                                        <option value="Requester">Requester</option>
+                                        <option value="Reviewer">Reviewer</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="row mb-3">
                                 <label for="username" class="col-sm-3 col-form-label">Username :</label>
                                 <div class="col-sm-9">
