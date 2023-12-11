@@ -50,13 +50,13 @@
                 <!-- Sidebar Navigation -->
                 <ul class="sidebar-nav">
                     <li class="sidebar-item">
-                        <a class="nav-link" href="./requester.html">
+                        <a class="nav-link" href="./requester.php">
                             <span class="fas fa-home"></span>
                             Home
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="nav-link" href="./uploadDocu.html">
+                        <a class="nav-link" href="./uploadDocu.php">
                             <span class="fas fa-file-alt"></span>
                             Upload Document
                         </a>

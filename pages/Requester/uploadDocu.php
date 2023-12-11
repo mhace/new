@@ -80,37 +80,39 @@
                     <div class="card shadow-2-strong">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <form action="">
+
+                            <form action="http://localhost:3000/upload" method="POST" enctype="multipart/form-data">
                                     <div class="docu-title">
                                         <h2>Document Title:</h2>
-                                        <input type="text">
+                                        <input type="text" name="title">
+
                                     </div>
                                     <div class="docu-type">
                                         <h2>Document Type:</h2>
-                                        <input type="text">
+                                        <input type="text" name="documentType">
                                     </div>
                                     <div class="wrapper-box">
                                         <div class="box">
                                             <div class="input-bx">
                                                 <h2 class="upload-area-title">Upload File</h2>
-                                                <form action="">
-                                                    <input type="file" id="upload" accept=".doc, .docx, .pdf" hidden>
-                                                    <label for="upload" class="uploadlabel">
+                                                
+                                                    <input type="file" id="upload" accept=".doc, .docx, .pdf" name="files" required multiple>
+                                                    <!-- <label for="upload" class="uploadlabel">
                                                         <span><i class="fa fa-cloud-upload-alt"></i></span>
                                                         <p>Click To Upload</p>
-                                                    </label>
+                                                    </label> -->
 
-                                                </form>
+                                                
                                             </div>
 
-                                            <div id="filewrapper">
+                                            <!-- <div id="filewrapper">
                                                 <h3 class="uploaded">Uploaded Document</h3>
-                                            </div>
+                                            </div> -->
 
                                         </div>
                                     </div>
                                     <div class="upload-btn">
-                                        <button class="upload">Upload</button>
+                                        <button type="submit" class="upload">Upload</button>
                                     </div>
                                 </form>
                             </div>
@@ -137,7 +139,7 @@
                 <div class="modal-body">Are you sure you want to log out?</div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <a href="./logout" class="btn btn-danger">Log out</a>
+                    <a href="../../php/logout.php" class="btn btn-danger">Log out</a>
                 </div>
             </div>
         </div>

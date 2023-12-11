@@ -229,7 +229,7 @@
                 <div class="modal-body">Are you sure you want to log out?</div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <a href="./logout" class="btn btn-danger">Log out</a>
+                    <a href="../../php/logout.php" class="btn btn-danger">Log out</a>
                 </div>
             </div>
         </div>

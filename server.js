@@ -1,7 +1,20 @@
+const bodyParser = require('body-parser');
 const express = require('express')
 const uploadMiddleware = require('./upload');
+const mysql = require('mysql')
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'teamtwoone-final'
+})
+
+
 var app = express()
 const port = 3000;
+
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const upload = require('./upload');
 
@@ -11,10 +24,25 @@ app.get('/', (req, res) => {
 });
 
 app.post('/upload', uploadMiddleware, (req, res) => {
-  res.json({ message: 'File uploaded successfully!' });
+  res.json({ message: req.body });
+});
+
+app.get('/test', (req, res) => {
+    connection.connect()
+
+    connection.query('SELECT * from document ', (err, rows, fields) => {
+
+    if (err) throw err
+
+    console.log('The solution is: ', rows[0].documentID)
+    res.json({ message:  rows[0].documentName});
+  })
+
+  connection.end()
 });
 
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
