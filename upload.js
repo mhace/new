@@ -27,10 +27,7 @@ const uploadMiddleware = (req, res, next) => {
     connection.connect()
 
     files.forEach((file) => {
-      console.log(file.filename)
-      console.log(req.body.Name)
-
-      connection.query('INSERT INTO document (documentName, documentFile,documentStatus) values (?,?,?)',[req.body.documentType, req.body.title, 'pending'], (err, rows, fields) => {
+      connection.query('INSERT INTO document (documentName, documentFile,documentStatus) values (?,?,?)',[req.body.title, file.filename, 'pending'], (err, rows, fields) => {
 
         if (err) throw err
         
