@@ -6,6 +6,7 @@
 <body>
   <h1>File Upload</h1>
   <form action="/upload" method="POST" enctype="multipart/form-data">
+    <input type="text" name="Title" required>
     <input type="file" name="files" required multiple>
     <button type="submit">Upload</button>
   </form>
