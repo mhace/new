@@ -369,9 +369,10 @@
                         </button>
                     </div>
                     <div class="modal-body">Are you sure you want to delete this user?</div>
+                    <form action="../../php/deleteuser.php" method="POST" id="deleteuserform">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button id="delete-submit" href="../../php/logout.php" class="btn btn-danger">Log out</a>
+                        <button id="delete-submit" name="id" form="deleteuserform" class="btn btn-danger">Confirm</a>
                     </div>
                 </div>
             </div>
@@ -404,7 +405,7 @@
 
                 $('#deleteConfirmation').on('show.bs.modal', function(e) {
                     var id = $(e.relatedTarget).data('id');
-                    // $('#delete-submit"').val(id)
+                    $('#delete-submit').val(id)
                 });
             });
 

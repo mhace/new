@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/upload', uploadMiddleware, (req, res) => {
-  res.json({ message: req.body });
+  res.redirect('http://localhost/finals/pages/Requester/requester.php');
 });
 
 app.get('/test', (req, res) => {
@@ -41,7 +41,6 @@ app.get('/test', (req, res) => {
      documentFile: rows[0].documentFile});
   })
 
-  connection.end()
 });
 
 

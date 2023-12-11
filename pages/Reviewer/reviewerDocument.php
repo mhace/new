@@ -43,13 +43,13 @@
                     <!-- Sidebar Navigation -->
                     <ul class="sidebar-nav">
                         <li class="sidebar-item">
-                            <a class="nav-link" href="./reviewerHome.html">
+                            <a class="nav-link" href="./reviewerHome.php">
                                 <span class="fas fa-home"></span>
                                 Home
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="nav-link" href="./reviewerDocument.html">
+                            <a class="nav-link" href="./reviewerDocument.php">
                                 <span class="bi bi-people-fill"></span>
                                 Document Review
                             </a>
@@ -191,7 +191,7 @@
                 <div class="modal-body">Are you sure you want to log out?</div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <a href="./logout" class="btn btn-danger">Log out</a>
+                    <a href="../../php/logout.php" class="btn btn-danger">Log out</a>
                 </div>
             </div>
         </div>

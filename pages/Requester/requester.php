@@ -92,12 +92,37 @@
                                 <table id="menu-items-data" class="table table-striped">
                                     <thead>
                                         <tr>
+                                
                                             <th scope="col">Document Title</th>
-                                            <th scope="col">Document Type</th>
+                                            <th scope="col">Document filename</th>
                                             <th scope="col">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody id="user-products-data" class="products-list">
+                                    <?php
+                                                    
+                                        include '../../php/db.php';
+
+                                        $sql = "SELECT *  FROM document ";
+
+                                        $st = $conn->prepare($sql);
+            
+                                        $st->execute();
+
+                                        $res = $st->get_result();
+
+                                        $ar = [];
+                                        if ($res->num_rows > 0) {
+                                            while ($row = $res->fetch_assoc()) {
+                                                $ar[] = "<tr><td>" .$row['documentName'] . "</td>
+                                                <td>" .$row['documentFile'] ."</td>
+                                                <td>" .$row['documentStatus'] ."</td> </tr> ";
+                                            }
+                                        }
+                                        foreach ($ar as $item) {
+                                            echo $item;
+                                        } ;
+                                            ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -124,7 +149,7 @@
                 <div class="modal-body">Are you sure you want to log out?</div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <a href="./logout" class="btn btn-danger">Log out</a>
+                    <a href="../../php/logout.php" class="btn btn-danger">Log out</a>
                 </div>
             </div>
         </div>

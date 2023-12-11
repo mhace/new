@@ -31,11 +31,10 @@ const uploadMiddleware = (req, res, next) => {
 
         if (err) throw err
         
-        console.log("Inserted value.")
+        console.log("Inserted file "+file.filename)
 
       })
     });
-    connection.end()
 
     next();
 });

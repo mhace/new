@@ -41,13 +41,13 @@
                 <!-- Sidebar Navigation -->
                 <ul class="sidebar-nav">
                     <li class="sidebar-item">
-                        <a class="nav-link" href="./requester.html">
+                        <a class="nav-link" href="./requester.php">
                             <span class="fas fa-home"></span>
                             Home
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="nav-link" href="./uploadDocu.html">
+                        <a class="nav-link" href="./uploadDocu.php">
                             <span class="fas fa-file-alt"></span>
                             Upload Document
                         </a>
@@ -87,10 +87,12 @@
                                         <input type="text" name="title">
 
                                     </div>
-                                    <div class="docu-type">
+                                    
+                                    <!-- <div class="docu-type">
                                         <h2>Document Type:</h2>
                                         <input type="text" name="documentType">
-                                    </div>
+                                    </div> -->
+
                                     <div class="wrapper-box">
                                         <div class="box">
                                             <div class="input-bx">
