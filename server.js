@@ -24,7 +24,13 @@ app.get('/', (req, res) => {
 });
 
 app.post('/upload', uploadMiddleware, (req, res) => {
-  res.json({ message: req.body });
+  // res.json({ message: req.body });
+  connection.connect()
+    connection.query('insert into document (documentName, documentFile,documentStatus) values (?,?,?)',[req.body.documentType, req.body.title, 'pending'], (err, rows, fields) => {
+
+    if (err) throw err
+  })
+  // connection.end()
 });
 
 app.get('/test', (req, res) => {
@@ -35,7 +41,10 @@ app.get('/test', (req, res) => {
     if (err) throw err
 
     console.log('The solution is: ', rows[0].documentID)
-    res.json({ message:  rows[0].documentName});
+    res.json({
+     documentName:  rows[0].documentName,
+     documentID: rows[0].documentID,
+     documentFile: rows[0].documentFile});
   })
 
   connection.end()
