@@ -133,8 +133,30 @@
                                             </tr>
                                         </thead>
                                         <tbody id="user-products-data" class="products-list">
-                                            
-                                            <!-- Table data goes here -->
+                                        <?php
+                                                    
+                                            include '../../php/db.php';
+
+                                            $sql = "SELECT *  FROM document ";
+
+                                            $st = $conn->prepare($sql);
+                
+                                            $st->execute();
+
+                                            $res = $st->get_result();
+
+                                            $ar = [];
+                                            if ($res->num_rows > 0) {
+                                                while ($row = $res->fetch_assoc()) {
+                                                    $ar[] = "<tr><td>" .$row['documentName'] . "</td>
+                                                    <td>" .$row['documentFile'] ."</td>
+                                                    <td>" .$row['documentStatus'] ."</td> </tr> ";
+                                                }
+                                            }
+                                            foreach ($ar as $item) {
+                                                echo $item;
+                                            } ;
+                                                ?>
                                         </tbody>
                                     </table>
                                 </div>
