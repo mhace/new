@@ -1,5 +1,5 @@
-
 const express = require('express')
+const uploadMiddleware = require('./upload');
 var app = express()
 const port = 3000;
 
@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname+"/pages/test_upload.html")
 });
 
-app.post('/upload', upload.single('file'), (req, res) => {
+app.post('/upload', uploadMiddleware, (req, res) => {
   res.json({ message: 'File uploaded successfully!' });
 });
 
