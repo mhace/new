@@ -139,20 +139,34 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody id="user-products-data" class="products-list">
-                                                                <tr>
-                                                                    <td>SampleRequestDate</td>
-                                                                    <td>SampleDocumentTitle</td>
-                                                                    <td>SampleDocumentType</td>
-                                                                    <td>SampleStatus</td>
-                                                                    <td>
-                                                                        <!-- Action buttons (edit and delete) -->
-                                                                        <button class="btn btn-success" id="left" style="color:white" onclick="editInfo(index, 'SampleIndex', 'SampleMenuItemName', 'SampleMenuItemPrice', 'SampleItemType1_price', 'SampleItemType2_price')" data-toggle="modal" data-target="#editDiscountModal">
-                                                                            Edit
-                                                                        </button>
-                                                                        <button type="button" class="btn btn-danger btn-sm px-3 py-2" onclick="deleteInfo(index)">
-                                                                            <i class="bi bi-trash"></i>
-                                                                        </button>
-                                                                    </td>
+
+                                                            <?php
+                                                    
+                                            include '../../php/db.php';
+
+                                            $sql = "SELECT *  FROM document ";
+
+                                            $st = $conn->prepare($sql);
+                
+                                            $st->execute();
+
+                                            $res = $st->get_result();
+
+                                            $ar = [];
+                                            if ($res->num_rows > 0) {
+                                                while ($row = $res->fetch_assoc()) {
+                                                    $ar[] = "<tr><td>" .$row['documentName'] . "</td>
+                                                    <td>" .$row['documentFile'] ."</td>
+                                                    <td>" .$row['documentStatus'] ."</td> 
+                                                    <td><button type='button' class='btn btn-danger btn-sm px-3 py-2'>
+                                                    <i class="bi bi-trash"></i></button></td></tr> "
+                                                }
+                                            }
+                                            foreach ($ar as $item) {
+                                                echo $item;
+                                            } ;
+                                                ?>
+                                                                    
                                                                 </tr>
                                                                 <!-- Add more rows as needed -->
                                                             </tbody>
