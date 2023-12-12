@@ -1,10 +1,19 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['role'])){
+        header("Location: ../../php/login.php");
+        die();
+    }
+    
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <!-- Required meta tag -->
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Reviewer Document</title>
+        <title>Reviewer Home</title>
         <!-- Favicon -->
         <link rel="shortcut icon" href="/img/logo.png" type="stylesheet" />
 
@@ -27,7 +36,7 @@
 
         <!-- icons:font awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-        <link rel="stylesheet" href="../../css/reviewerDocument.css" />
+        <link rel="stylesheet" href="../../css/reviewerHome.css" />
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0"></script>
     </head>
@@ -65,75 +74,71 @@
                 </div>
             </aside>
 
-           <!-- Main Component -->
-<div class="main">
-    <div class="container-fluid navbar-container">
-    </div>
-    <div class="container mt-1">
-        <div class="row">
-            <!-- Document Details Column -->
-            <div class="col">
+            <!-- Main Component -->
+            <div class="main">
+                <div class="container-fluid navbar-container">
+                </div>
+                <div class="container mt-1">
+                    <div class="row justify-content-end"> <!-- Add this row to align content to the right -->
+                        <div class="col-auto">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary bi bi-bell-fill " data-bs-toggle="modal" data-bs-target="#notificationModal">
+                                Notifications
+                            </button>
+                        </div>
+                    </div>
+            
+                    <!-- Notification Modal -->
+                    <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="notificationModalLabel">Notifications</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="notification-content">
+                                        This is a notification message. You can customize this content as needed.
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col users-label">
-                        <h1>Review Document Details</h1>
-                    </div>
-                    <div class="col-auto text-end">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary bi bi-bell-fill" data-bs-toggle="modal" data-bs-target="#notificationModal">
-                            Notifications
-                        </button>
+                        <h1>
+                            Document List
+                        </h1>
                     </div>
                 </div>
-                <div class="row justify-content-end">
-                    <div class="col-md-3 px-4">
-                        <div class="card">
-                        <!-- Add your filter elements here -->
-                        
-                        <label class="form-label">Sort Document by:</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="filterOption" id="filterOption1" value="option1">
-                            <label class="form-check-label" for="filterOption1">
-                                Pending
-                            </label>
+                    <div class="ps-5 row  border rounded bg-light user-search-bar">
+                        <div class="col-10 d-flex flex-wrap align-content-center">
+                            <div class="input-group mb-1">
+                                <input type="text" class="form-control" id="searchUserField" placeholder="Search Document" aria-label="User Search" aria-describedby="button-addon2">
+                                <button class="btn btn-primary" type="button" id="searchUserBtn">Search</button>
+                            </div>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="filterOption" id="filterOption2" value="option2">
-                            <label class="form-check-label" for="filterOption2">
-                                Return
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="filterOption" id="filterOption3" value="option3">
-                            <label class="form-check-label" for="filterOption3">
-                                Approved
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="ps-5 row border rounded bg-light user-search-bar">
-                    <div class="col-10 d-flex flex-wrap align-content-center">
-                        <!-- Additional content can be added here -->
-                    </div>
-                </div>
-                <!-- List of documents -->
-                <div class="row justify-content-center px-5 mt-3">
-                    <div class="col-md-12">
-                        <div class="card shadow-2-strong">
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table id="menu-items-data" class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">TITLE</th>
-                                                <th scope="col">DOCUMENT TYPE</th>
-                                                <th scope="col">NO. OF PAGES</th>
-                                                <th scope="col">REQUESTER</th>
-                                                <th scope="col">REQUESTER DATE</th>
-                                                <th scope="col">ACTION</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="user-products-data" class="products-list">
-                                        <?php
+                                    <!-- List of documents -->
+                                    <div class="row justify-content-center px-5 mt-3">
+                                        <div class="col-md-12">
+                                            <div class="card shadow-2-strong">
+                                                <div class="card-body">
+                                                    <div class="table-responsive">
+                                                        <table id="menu-items-data" class="table table-striped">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col">DOCUMENT TITLE</th>
+                                                                    <th scope="col">STATUS</th>
+                                                                    <th scope="col">ACTION</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="user-products-data" class="products-list">
+
+                                                            <?php
                                                     
                                             include '../../php/db.php';
 
@@ -149,50 +154,65 @@
                                             if ($res->num_rows > 0) {
                                                 while ($row = $res->fetch_assoc()) {
                                                     $ar[] = "<tr><td>" .$row['documentName'] . "</td>
-                                                    <td>" .$row['documentFile'] ."</td>
-                                                    <td>" .$row['documentStatus'] ."</td> </tr> ";
+                                                    <td>" .$row['documentStatus'] ."</td>
+                                                    <td>
+                                                        <a class='btn btn-success' href='http://localhost:3000/download?filename=".$row['documentFile']."'>Download</a>
+                                                        <button type='button' data-id='".$row['documentID']."' class='btn btn-success btn-sm px-3 py-2' data-toggle='modal' data-target='#editDiscountModal'> Edit </button>
+                                                    </td>
+                                                    </tr>";
                                                 }
                                             }
                                             foreach ($ar as $item) {
                                                 echo $item;
                                             } ;
                                                 ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Notification Modal -->
-        <div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="notificationModalLabel">Notifications</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div id="notification-content">
-                            This is a notification message. You can customize this content as needed.
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
+                                                                    
+                                                                </tr>
+                                                                <!-- Add more rows as needed -->
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
             </div>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="editDiscountModal" tabindex="-1" aria-labelledby="editDiscountModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editDiscountModalLabel">Edit Document Details</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="http://localhost:3000/updateDocument" id="editDocumentForm" method="POST">
+                    <!-- Edit Document Title -->
+                    <div class="mb-3">
+                        <label for="editDocumentTitle" class="form-label">Edit Document Title</label>
+                        <input type="text" class="form-control" id="editDocumentTitle" name="editDocumentTitle" placeholder="Enter new document title">
+                    </div>
+                    <!-- Edit Status -->
+                    <div class="mb-3">
+                        <label for="editStatus" class="form-label">Edit Status</label>
+                        <select class="form-select" id="editStatus" name="editStatus">
+                            <option value="pending">Pending</option>
+                            <option value="return">Return</option>
+                            <option value="approved">Approved</option>
+                        </select>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button name="id" id="edit-submit" form="editDocumentForm" type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+            </form>
+        </div>
     </div>
-    
-
-
-
+</div>
                     
             <!-- Logout Modal -->
         <div
@@ -235,6 +255,13 @@
                    links.classList.add('active');
                  }
              });
+
+             $(document).ready(function() {
+                $('#editDiscountModal').on('show.bs.modal', function(e) {
+                    var id = $(e.relatedTarget).data('id');
+                    $('#edit-submit').val(id)
+                });
+            });
            </script>
 
     </body>

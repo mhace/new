@@ -52,13 +52,13 @@
                     <!-- Sidebar Navigation -->
                     <ul class="sidebar-nav">
                         <li class="sidebar-item">
-                            <a class="nav-link" href="./reviewerHome.html">
+                            <a class="nav-link" href="./reviewerHome.php">
                                 <span class="fas fa-home"></span>
                                 Home
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="nav-link" href="./reviewerDocument.html">
+                            <a class="nav-link" href="./reviewerDocument.php">
                                 <span class="bi bi-people-fill"></span>
                                 Document Review
                             </a>
@@ -128,49 +128,7 @@
                                             <div class="card shadow-2-strong">
                                                 <div class="card-body">
                                                     <div class="table-responsive">
-                                                        <table id="menu-items-data" class="table table-striped">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th scope="col">REQUEST DATE</th>
-                                                                    <th scope="col">DOCUMENT TITLE</th>
-                                                                    <th scope="col">DOCUMENT TYPE</th>
-                                                                    <th scope="col">STATUS</th>
-                                                                    <th scope="col">ACTION</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody id="user-products-data" class="products-list">
-
-                                                            <?php
-                                                    
-                                            include '../../php/db.php';
-
-                                            $sql = "SELECT *  FROM document ";
-
-                                            $st = $conn->prepare($sql);
-                
-                                            $st->execute();
-
-                                            $res = $st->get_result();
-
-                                            $ar = [];
-                                            if ($res->num_rows > 0) {
-                                                while ($row = $res->fetch_assoc()) {
-                                                    $ar[] = "<tr><td>" .$row['documentName'] . "</td>
-                                                    <td>" .$row['documentFile'] ."</td>
-                                                    <td>" .$row['documentStatus'] ."</td> 
-                                                    <td><button type='button' class='btn btn-danger btn-sm px-3 py-2'>
-                                                    <i class="bi bi-trash"></i></button></td></tr> "
-                                                }
-                                            }
-                                            foreach ($ar as $item) {
-                                                echo $item;
-                                            } ;
-                                                ?>
-                                                                    
-                                                                </tr>
-                                                                <!-- Add more rows as needed -->
-                                                            </tbody>
-                                                        </table>
+                                                       
                                                     </div>
                                                 </div>
                                             </div>

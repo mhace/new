@@ -129,65 +129,50 @@
                                             </thead>
                                             <tbody id="user-list-data" class="users-list">
                                                
-                                                   
-                                                     
+                                            <?php
+                                                
+                                                include '../../php/db.php';
 
-                                                    <?php
-                                                    
-                                                    include '../../php/db.php';
+                                                $sql = "SELECT *  FROM users ";
 
-                                                    $sql = "SELECT *  FROM users ";
+                                                $st = $conn->prepare($sql);
+                    
+                                                $st->execute();
 
-                                                    $st = $conn->prepare($sql);
-                        
-                                                    $st->execute();
+                                                $res = $st->get_result();
+                                                $r = $res->fetch_row();
+                                                //echo $r;
 
-                                                    $res = $st->get_result();
-                                                    $r = $res->fetch_row();
-                                                    //echo $r;
-
-                                                    $ar = [];
-                                                    
-
-                                                    if ($res->num_rows > 0) {
-                                                        while ($row = $res->fetch_assoc()) {
-                                                        
-                                                            $ar[] = "<tr><td>" .$row['userType'] . "</td>
-                                                            <td>" .$row['username'] ."</td>
-                                                            <td>" .$row['firstName'] ."</td>
-                                                            <td>" .$row['lastName'] ."</td>
-                                                            " .
-        
-                                                            '<td>
-                                                                
-                            
-                                                                <button class="btn btn-success" data-id="'.$row["user_ID"].'" style="color:white"  data-toggle="modal" data-target="#editDiscountModal">
-                                                                    Edit
-                                                                </button>
-                                                                <button type"button" data-id="'.$row["user_ID"].'" class="btn btn-danger btn-sm px-3 py-2" data-toggle="modal" data-target="#deleteConfirmation">
-                                                                    <i class="bi bi-trash"></i>
-                                                                </button>
-        
-                                                            </td></tr>';
-                                                            
-                                                        }
-                                                    }
-                                                    foreach ($ar as $item) {
-                                                        echo $item;
-                                                    }  ;
-                                                    
-                                                    
-                                                   
-
-
-
-                                                  
-    
-
-
+                                                $ar = [];
                                                 
 
-                                                        ?>
+                                                if ($res->num_rows > 0) {
+                                                    while ($row = $res->fetch_assoc()) {
+                                                    
+                                                        $ar[] = "<tr><td>" .$row['userType'] . "</td>
+                                                        <td>" .$row['username'] ."</td>
+                                                        <td>" .$row['firstName'] ."</td>
+                                                        <td>" .$row['lastName'] ."</td>
+                                                        " .
+    
+                                                        '<td>
+                                                            
+                        
+                                                            <button class="btn btn-success" data-id="'.$row["user_ID"].'" style="color:white"  data-toggle="modal" data-target="#editDiscountModal">
+                                                                Edit
+                                                            </button>
+                                                            <button type"button" data-id="'.$row["user_ID"].'" class="btn btn-danger btn-sm px-3 py-2" data-toggle="modal" data-target="#deleteConfirmation">
+                                                                <i class="bi bi-trash"></i>
+                                                            </button>
+    
+                                                        </td></tr>';
+                                                        
+                                                    }
+                                                }
+                                                foreach ($ar as $item) {
+                                                    echo $item;
+                                                }  ;
+                                            ?>
 
                                                 
                                                 <!-- Add more rows as needed -->
