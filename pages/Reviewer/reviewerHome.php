@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION['role'])){
-        header("Location: ../../php/login.php");
+        header("Location: ../../");
         die();
     }
     

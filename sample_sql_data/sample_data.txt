@@ -1,0 +1,9 @@
+INSERT INTO offices (officeName)
+VALUES ("OGRAA"), ("UNIT"), ("OVP for Academic Affairs"), ("OVP for Finance"), ("Office for Legal Affairs"), ("OVP for Administration");
+INSERT INTO users (user_ID, username, password, firstName, lastName, userType, officeID)
+VALUES (1,"admin1", "admin", "Captain", "Philippines", "Administrator", 1),
+(2, "admin", "admin", "Tony", "Stark", "Administrator", 1),
+(3, "requester", "requester", "Wonder", "Boy", "Requester", 3),
+(4, "requester1", "requester", "Wonder", "woman", "Requester", 4),
+(5, "reviewer", "reviewer", "Bogart", "Wonderer", "Reviewer", 3),
+(6, "reviewer1", "reviewer", "Boradius", "Bogart", "Reviewer", 5);

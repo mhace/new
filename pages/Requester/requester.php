@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION['role'])){
-        header("Location: ../../php/login.php");
+        header("Location: ../../");
         die();
     }
     
@@ -92,7 +92,7 @@
                                 <table id="menu-items-data" class="table table-striped">
                                     <thead>
                                         <tr>
-                                
+                                            <th scope="col">Office</th>
                                             <th scope="col">Document Title</th>
                                             <th scope="col">Document filename</th>
                                             <th scope="col">Status</th>
@@ -103,7 +103,9 @@
                                                     
                                         include '../../php/db.php';
 
-                                        $sql = "SELECT *  FROM document ";
+                                        $sql = "SELECT document.*, officeName FROM document 
+                                        INNER JOIN offices on document.officeid = offices.officeID
+                                        WHERE document.userid = ".$_SESSION['uid'];
 
                                         $st = $conn->prepare($sql);
             
@@ -114,7 +116,9 @@
                                         $ar = [];
                                         if ($res->num_rows > 0) {
                                             while ($row = $res->fetch_assoc()) {
-                                                $ar[] = "<tr><td>" .$row['documentName'] . "</td>
+                                                $ar[] = "<tr>
+                                                <td>" .$row['officeName'] . "</td>
+                                                <td>" .$row['documentName'] . "</td>
                                                 <td>" .$row['documentFile'] ."</td>
                                                 <td>" .$row['documentStatus'] ."</td> </tr> ";
                                             }

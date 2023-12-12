@@ -124,6 +124,7 @@
                                                     <th scope="col">USERNAME</th>
                                                     <th scope="col">FIRST NAME</th>
                                                     <th scope="col">LAST NAME</th>
+                                                    <th scope="col">Office</th>
                                                     <th scope="col">ACTION</th>
                                                 </tr>
                                             </thead>
@@ -133,7 +134,8 @@
                                                 
                                                 include '../../php/db.php';
 
-                                                $sql = "SELECT *  FROM users ";
+                                                $sql = "SELECT users.*, officeName  FROM users 
+                                                INNER JOIN offices on users.officeID = offices.officeID;";
 
                                                 $st = $conn->prepare($sql);
                     
@@ -153,6 +155,7 @@
                                                         <td>" .$row['username'] ."</td>
                                                         <td>" .$row['firstName'] ."</td>
                                                         <td>" .$row['lastName'] ."</td>
+                                                        <td>" .$row['officeName'] ."</td>
                                                         " .
     
                                                         '<td>
@@ -239,6 +242,43 @@
                                         <input type="text" class="form-control" id="editLastName" name="lastname">
                                     </div>
                                 </div>
+
+                                <div class="row mb-3">
+                                    <label for="editOffice" class="col-sm-3 col-form-label">Edit Office</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-select" id="office" name="office">
+                                            <?php
+                                            include '../../php/db.php';
+
+                                            $sql = "SELECT * FROM offices;";
+
+                                            $st = $conn->prepare($sql);
+
+                                            $st->execute();
+
+                                            $res = $st->get_result();
+                                            $r = $res->fetch_row();
+                                            //echo $r;
+
+                                            $ar = [];
+
+
+                                            if ($res->num_rows > 0) {
+                                                while ($row = $res->fetch_assoc()) {
+                                                
+                                                    $ar[] = "<option value=".$row['officeID'].">".$row['officeName']."</option>";
+                                                    
+                                                }
+                                            }
+                                            foreach ($ar as $item) {
+                                                echo $item;
+                                            }  ;
+                                            ?>
+                                            </select>
+
+                                    </div>
+                                </div>
+                               
                             </div>
                         </form>
                     </div>

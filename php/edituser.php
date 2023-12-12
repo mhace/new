@@ -4,11 +4,12 @@
     echo "<script>console.log('Editting User')</script>";
 
     if (isset($_POST)){
-        $userType = $_POST['role'];
+        $userType = trim($_POST['role']);
         $username = $_POST['username'];
         $password = $_POST['password'];
         $first_name = $_POST['firstname'];
         $last_name =$_POST['lastname'];
+        $office =$_POST['office'];
         $id =$_POST['id'];
 
         // echo "<script>console.log('Editting User')</script>";
@@ -47,6 +48,11 @@
 
         if (isset($password)) {
             $update_user_type = "UPDATE users SET password = '$password' WHERE user_ID='$id';";
+            mysqli_query($conn, $update_user_type);
+        }
+
+        if (isset($office)) {
+            $update_user_type = "UPDATE users SET officeID = '$office' WHERE user_ID='$id';";
             mysqli_query($conn, $update_user_type);
         }
 

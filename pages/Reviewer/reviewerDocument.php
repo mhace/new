@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION['role'])){
-        header("Location: ../../php/login.php");
+        header("Location: ../../");
         die();
     }
     
@@ -131,6 +131,8 @@
                                                         <table id="menu-items-data" class="table table-striped">
                                                             <thead>
                                                                 <tr>
+                                                                    <th scope="col">NAME</th>
+                                                                    <th scope="col">Office</th>
                                                                     <th scope="col">DOCUMENT TITLE</th>
                                                                     <th scope="col">STATUS</th>
                                                                     <th scope="col">ACTION</th>
@@ -142,7 +144,10 @@
                                                     
                                             include '../../php/db.php';
 
-                                            $sql = "SELECT *  FROM document ";
+                                            $sql = "SELECT document.*, concat(users.firstName,' ', users.lastName) as Name, officeName FROM document 
+                                            INNER JOIN users on users.user_ID = document.userid 
+                                            INNER JOIN offices on document.officeid = offices.officeID
+                                            WHERE document.officeid=".$_SESSION["oid"];
 
                                             $st = $conn->prepare($sql);
                 
@@ -153,7 +158,10 @@
                                             $ar = [];
                                             if ($res->num_rows > 0) {
                                                 while ($row = $res->fetch_assoc()) {
-                                                    $ar[] = "<tr><td>" .$row['documentName'] . "</td>
+                                                    $ar[] = "<tr>
+                                                    <td>" .$row['Name'] . "</td>
+                                                    <td>" .$row['officeName'] . "</td>
+                                                    <td>" .$row['documentName'] . "</td>
                                                     <td>" .$row['documentStatus'] ."</td>
                                                     <td>
                                                         <a class='btn btn-success' href='http://localhost:3000/download?filename=".$row['documentFile']."'>Download</a>
