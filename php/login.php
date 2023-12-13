@@ -41,37 +41,6 @@
 
         }
 
-        // echo var_dump($stmt);
-        // mysqli_stmt_bind_param($stmt, "ss", $username, $password);
-        // mysqli_stmt_execute($stmt);
-        // $result = mysqli_stmt_get_result($stmt);
-        // // echo $result ;
-        // echo var_dump($result);
-
-        // if ($row = mysqli_fetch_assoc($result)) {
-        //     if ($row['status'] == 'ACTIVE') {
-        //         $_SESSION['acct_username'] = $Username;
-        //         $_SESSION['acct_type'] = $row['acct_type'];
-        //         $_SESSION['acct_fname'] = $row['acct_fname'];
-
-        //         // Determine the user type and redirect accordingly
-        //         switch ($row['acct_type']) {
-        //             case 'ADMIN':
-        //                 header("Location: ./php/admin.php");
-        //                 exit();
-        //             default:
-        //                 header("Location: ../index.php?id=$Username&error=Admin accounts only");
-        //                 exit();
-        //         }
-        //     } else {
-        //         // User is inactive
-        //         header("Location: ../index.php?id=$Username&error=Inactive Account");
-        //         exit();
-        //     }
-        // } else {
-        //     // No user found
-        //     header("Location: ../index.php?id=$Username&error=Invalid Credentials");
-        //     exit();
-        // }
+        
     }
 ?>

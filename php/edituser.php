@@ -12,13 +12,6 @@
         $office =$_POST['office'];
         $id =$_POST['id'];
 
-        // echo "<script>console.log('Editting User')</script>";
-        // echo "<script>console.log('". $userType ."')</script>";
-        // echo "<script>console.log('". $username ."')</script>";
-        // echo "<script>console.log('". $password ."')</script>";
-        // echo "<script>console.log('". $first_name ."')</script>";
-        // echo "<script>console.log('". $last_name ."')</script>";
-        // echo "<script>console.log('". $id ."')</script>";
 
         if (isset($userType)) {
             $update_user_type = "UPDATE users SET userType = '$userType' WHERE user_ID='$id';";

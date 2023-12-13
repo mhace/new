@@ -31,6 +31,7 @@
         public function get_userRole() {
             return $this->roleID;
         }
+    }
 
     class Roles {
         private $roleID;
@@ -81,7 +82,8 @@
                 return $this->$documentStatus;
             }
 
-        }     
+        }    
+     
 
 // from the basis pero need palitan HAHAHAH so tentative muna ito:
 
