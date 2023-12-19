@@ -25,7 +25,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/upload', uploadMiddleware, (req, res) => {
-  res.redirect('http://localhost/finals/pages/Requester/requester.php');
+  res.redirect('http://localhost/drt/pages/Requester/requester.php');
 });
 
 app.get('/download', function(req, res){

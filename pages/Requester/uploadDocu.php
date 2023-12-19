@@ -94,38 +94,6 @@
                                     <div class="docu-title">
                                         <h2>Document Title:</h2>
                                         <input type="text" name="title">
-
-                                        <h2>Office:</h2>
-                                        <select class="form-select" id="office" name="office">
-                                        <?php
-                                        include '../../php/db.php';
-
-                                        $sql = "SELECT * FROM offices;";
-
-                                        $st = $conn->prepare($sql);
-
-                                        $st->execute();
-
-                                        $res = $st->get_result();
-                                        $r = $res->fetch_row();
-                                        //echo $r;
-
-                                        $ar = [];
-
-
-                                        if ($res->num_rows > 0) {
-                                            while ($row = $res->fetch_assoc()) {
-                                            
-                                                $ar[] = "<option value=".$row['officeID'].">".$row['officeName']."</option>";
-                                                
-                                            }
-                                        }
-                                        foreach ($ar as $item) {
-                                            echo $item;
-                                        }  ;
-                                        ?>
-                                        </select>
-
                                     </div>
                                     
                                     <!-- <div class="docu-type">
