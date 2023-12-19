@@ -4,6 +4,8 @@
         header("Location: ../../");
         die();
     }
+
+    include '../../php/db.php';
     
 
 ?>
@@ -132,7 +134,6 @@
                                                
                                             <?php
                                                 
-                                                include '../../php/db.php';
 
                                                 $sql = "SELECT users.*, officeName  FROM users 
                                                 INNER JOIN offices on users.officeID = offices.officeID;";
@@ -289,9 +290,9 @@
                 </div>
             </div>
         </div>
-               <!--  Add Users Modal-->
-        
-    <!--Modal Form-->
+    
+    
+    <!--  Add Users Modal-->
     <div class="modal fade" id="addUserModal">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -307,9 +308,9 @@
                         <div class="inputField">
                              <!-- Role selection dropdown -->
                              <div class="row mb-3">
-                                <label for="editRole" class="col-sm-3 col-form-label">Role</label>
+                                <label for="role" class="col-sm-3 col-form-label">Role</label>
                                 <div class="col-sm-9">
-                                    <select class="form-select" id="editRole" name="userType">
+                                    <select class="form-select" id="role" name="userType">
                                         <option value="Administrator">Administrator</option>
                                         <option value="Requester">Requester</option>
                                         <option value="Reviewer">Reviewer</option>
@@ -323,24 +324,48 @@
                                     <input type="text" class="form-control" id="username" placeholder="Enter Username Here" name="username">
                                 </div>
                             </div>
+
                             <div class="row mb-3">
                                 <label for="password" class="col-sm-3 col-form-label">Password :</label>
                                 <div class="col-sm-9">
                                     <input type="password" class="form-control" id="password" name= "password"placeholder="Enter Password Here">
                                 </div>
                             </div>
+
                             <div class="row mb-3">
                                 <label for="firstname" class="col-sm-3 col-form-label">FirstName :</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" id="firstname" name="first_name" placeholder="Enter FirstName Here">
                                 </div>
                             </div>
+
                             <div class="row mb-3">
                                 <label for="lastname" class="col-sm-3 col-form-label">LastName :</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" id="lastname" name="last_name" placeholder="Enter LastName Here">
                                 </div>
                             </div>
+
+                            <div id = "selectofficediv" class="row mb-3" hidden>
+                                <label for="office" class="col-sm-3 col-form-label">Office</label>
+                                <div class="col-sm-9">
+                                    <select class="form-select" id="selectoffice" name="office" >
+                                        <?php
+                                            $sql = "SELECT * FROM offices";
+
+                                            $result = $conn->query($sql);
+
+                                            while($row = $result->fetch_assoc()) {
+                                                echo "<option value='" . $row["officeID"]. "'>" . $row["officeName"]. "</option>";
+                                            }
+
+                                        
+                                        ?>
+
+                                    </select>
+                                </div>
+                            </div>
+
                         </div>
                     </form>
                 </div>
@@ -432,6 +457,18 @@
                     var id = $(e.relatedTarget).data('id');
                     $('#delete-submit').val(id)
                 });
+                
+                $('#role').on('change', function(e) {
+                    var role = $(this).val();
+
+                    if (role == "Reviewer") {
+                        $('#selectofficediv').attr("hidden", false);
+                    } else {
+                        $('#selectofficediv').attr("hidden", true);
+                    }
+
+                });
+
             });
 
            </script>

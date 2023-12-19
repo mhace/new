@@ -10,9 +10,15 @@
         $username = $_POST['username'];
         $password = $_POST['password'];
         $first_name = $_POST['first_name'];
-        $last_name =$_POST['last_name'];
+        $last_name = $_POST['last_name'];
+        $office = 6;
 
-    $editUserForm = "INSERT INTO users value (NULL,'$username','$password','$first_name','$last_name', '$userType', 'office1' )";
+        if ($_POST['userType'] == "Reviewer") {
+            $office = $_POST['office'];
+
+        }
+
+    $editUserForm = "INSERT INTO users value (NULL,'$username','$password','$first_name','$last_name', '$userType', $office)";
     $sqlCreate = mysqli_query($conn, $editUserForm);
     echo $sqlCreate;
 
