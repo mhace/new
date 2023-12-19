@@ -57,12 +57,7 @@
                                 Home
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a class="nav-link" href="./reviewerDocument.php">
-                                <span class="bi bi-people-fill"></span>
-                                Document Review
-                            </a>
-                        </li>
+                       
                         <li class="sidebar-item">
                             <!-- Button to trigger the modal -->
                             <a href="put-link-here" class="nav-link" data-toggle="modal" data-target="#logoutModal">
@@ -128,7 +123,59 @@
                                             <div class="card shadow-2-strong">
                                                 <div class="card-body">
                                                     <div class="table-responsive">
-                                                       
+                                                        <table id="menu-items-data" class="table table-striped">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col">NAME</th>
+                                                                    <th scope="col">Office</th>
+                                                                    <th scope="col">DOCUMENT TITLE</th>
+                                                                    <th scope="col">STATUS</th>
+                                                                    <th scope="col">Comment</th>
+                                                                    <th scope="col">ACTION</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="user-products-data" class="products-list">
+
+                                                            <?php
+                                                    
+                                            include '../../php/db.php';
+
+                                            $sql = "SELECT document.*, concat(users.firstName,' ', users.lastName) as Name, officeName FROM document 
+                                            INNER JOIN users on users.user_ID = document.userid 
+                                            INNER JOIN offices on document.officeid = offices.officeID
+                                            WHERE document.officeid=".$_SESSION["oid"];
+
+                                            $st = $conn->prepare($sql);
+                
+                                            $st->execute();
+
+                                            $res = $st->get_result();
+
+                                            $ar = [];
+                                            if ($res->num_rows > 0) {
+                                                while ($row = $res->fetch_assoc()) {
+                                                    $ar[] = "<tr>
+                                                    <td>" .$row['Name'] . "</td>
+                                                    <td>" .$row['officeName'] . "</td>
+                                                    <td>" .$row['documentName'] . "</td>
+                                                    <td>" .$row['documentStatus'] ."</td>
+                                                    <td>" .$row['comment'] ."</td>
+                                                    <td>
+                                                        <a class='btn btn-success' href='http://localhost:3000/download?filename=".$row['documentFile']."'>Download</a>
+                                                        <button type='button' data-id='".$row['documentID']."' class='btn btn-success btn-sm px-3 py-2' data-toggle='modal' data-target='#editDiscountModal'> Edit </button>
+                                                    </td>
+                                                    </tr>";
+                                                }
+                                            }
+                                            foreach ($ar as $item) {
+                                                echo $item;
+                                            } ;
+                                                ?>
+                                                                    
+                                                                </tr>
+                                                                <!-- Add more rows as needed -->
+                                                            </tbody>
+                                                        </table>
                                                     </div>
                                                 </div>
                                             </div>
@@ -144,40 +191,30 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editDiscountModalLabel">Edit Document Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="#" id="editDocumentForm">
-                    <!-- Edit Request Date -->
-                    <div class="mb-3">
-                        <label for="editRequestDate" class="form-label">Edit Request Date</label>
-                        <input type="text" class="form-control" id="editRequestDate" name="editRequestDate" placeholder="Enter new request date">
-                    </div>
-                    <!-- Edit Document Title -->
-                    <div class="mb-3">
-                        <label for="editDocumentTitle" class="form-label">Edit Document Title</label>
-                        <input type="text" class="form-control" id="editDocumentTitle" name="editDocumentTitle" placeholder="Enter new document title">
-                    </div>
-                    <!-- Edit Document Type -->
-                    <div class="mb-3">
-                        <label for="editDocumentType" class="form-label">Edit Document Type</label>
-                        <input type="text" class="form-control" id="editDocumentType" name="editDocumentType" placeholder="Enter new document type">
-                    </div>
+                <form action="http://localhost:3000/updateDocument" id="editDocumentForm" method="POST">
+
                     <!-- Edit Status -->
                     <div class="mb-3">
                         <label for="editStatus" class="form-label">Edit Status</label>
-                        <select class="form-select" id="editStatus" name="editStatus">
-                            <option value="pending">Pending</option>
+                        <select class="form-select" id="editStatus" name="status">
                             <option value="return">Return</option>
                             <option value="approved">Approved</option>
                         </select>
                     </div>
-                </form>
+
+                    <div class="mb-3">
+                        <label for="comment" class="form-label">Comment</label>
+                        <textarea rows="4" cols="50" type="text" class="form-control" id="comment" name="comment" placeholder="Enter your comment"></textarea>
+                    </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="saveEdit()">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button name="id" id="edit-submit" form="editDocumentForm" type="submit" class="btn btn-primary">Submit</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
@@ -223,6 +260,13 @@
                    links.classList.add('active');
                  }
              });
+
+             $(document).ready(function() {
+                $('#editDiscountModal').on('show.bs.modal', function(e) {
+                    var id = $(e.relatedTarget).data('id');
+                    $('#edit-submit').val(id)
+                });
+            });
            </script>
 
     </body>

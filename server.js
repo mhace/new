@@ -38,25 +38,31 @@ app.get('/download', function(req, res){
   
 });
 
+
 app.post('/updateDocument', (req, res) => {
-  var title = req.body.editDocumentTitle
-  var status = req.body.editStatus
-  var id = req.body.id
+  var {comment, status, id} = req.body
 
-  if (title.trim()) {
-
-    connection.query('UPDATE document set documentName="'+title+'" where documentID='+id, (err, rows, fields) => {
-      if (err) throw err
-      console.log('Updating Title.')
-    })
-  }
-
-  connection.query('UPDATE document set documentStatus="'+status+'" where documentID='+id, (err, rows, fields) => {
+  connection.query('UPDATE document set documentStatus=?, comment=? where documentID=?', [status, comment, id], (err, rows, fields) => {
     if (err) throw err
-    console.log('Updating Status.')
   });
 
-  res.redirect('http://localhost/finals/pages/Reviewer/reviewerDocument.php');
+  if (status == "approved") {
+    connection.query('SELECT * FROM document where documentID=?', [id], (err, rows, fields) => {
+      if (err) throw err
+
+      officeid = parseInt(rows[0]['officeid'])
+
+      if (officeid < 5) {
+        status = "pending"
+        connection.query('UPDATE document set documentStatus=?, officeid=? where documentID=?', [status, officeid+1, id], (err, rows, fields) => {
+          if (err) throw err
+        });
+      } 
+    })
+
+  }
+
+  res.redirect('http://localhost/drt/pages/Reviewer/reviewerHome.php');
 
 });
 
