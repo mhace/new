@@ -35,15 +35,14 @@ const uploadMiddleware = (req, res, next) => {
 
         action = "uploaded a document"
         data = {
-          "filename": file.filename
+          "filename": file.filename,
+          "title": req.body.title
         }
 
-        connection.query('INSERT INTO logs (event,data,uid) values (?,?,?)',[action, file.filename, 'pending', req.body.uid, 1], (err, rows, fields) => {
+        connection.query('INSERT INTO logs (event,data,uid) values (?,?,?)',[action, JSON.stringify(data), req.body.uid], (err, rows, fields) => {
 
           if (err) throw err
           
-          console.log("Inserted file "+file.filename)
-  
         });
 
       });

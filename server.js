@@ -66,8 +66,21 @@ app.post('/updateDocument', (req, res) => {
     })
 
   }
+  action = "made changes to a document"
+  data = {
+    "status": status,
+    "comment": comment,
+    "documentid": id
+  }
 
-  res.redirect('http://localhost/drt/pages/Reviewer/reviewerHome.php');
+  connection.query('INSERT INTO logs (event,data,uid) values (?,?,?)',[action, JSON.stringify(data), req.body.uid], (err, rows, fields) => {
+
+    if (err) throw err
+    console.log("Added new log!")
+    res.redirect('http://localhost/drt/pages/Reviewer/reviewerHome.php');
+
+  });
+
 
 });
 

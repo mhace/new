@@ -217,6 +217,7 @@
                         <label for="comment" class="form-label">Comment</label>
                         <textarea rows="4" cols="50" type="text" class="form-control" id="comment" name="comment" placeholder="Enter your comment"></textarea>
                     </div>
+                    <input value="<?php echo $_SESSION['uid']; ?>" hidden name="uid"></input>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

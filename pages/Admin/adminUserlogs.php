@@ -60,12 +60,6 @@
                         <li class="sidebar-item">
                             <a class="nav-link" href="./adminHome.php">
                                 <span class="fas fa-home"></span>
-                                Home
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="nav-link" href="./adminUsers.php">
-                                <span class="bi bi-people-fill"></span>
                                 Users
                             </a>
                         </li>

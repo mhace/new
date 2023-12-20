@@ -178,6 +178,8 @@
                                     </div>
                                 </div>
                             </div>
+                    <input value="<?php echo $_SESSION['uid']; ?>" hidden name="uid"></input>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

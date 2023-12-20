@@ -33,6 +33,18 @@ const uploadMiddleware = (req, res, next) => {
         
         console.log("Inserted file "+file.filename)
 
+        action = "reuploaded a document"
+        data = {
+          "filename": file.filename,
+          "title": req.body.title
+        }
+
+        connection.query('INSERT INTO logs (event,data,uid) values (?,?,?)',[action, JSON.stringify(data), req.body.uid], (err, rows, fields) => {
+
+          if (err) throw err
+          
+        });
+
       })
     });
 

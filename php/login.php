@@ -20,7 +20,7 @@
         $r = $res->fetch_row();
 
         if ($r== NULL){
-            header("Location: ../../");
+            header("Location: ../");
             die();
         }else{
             $_SESSION["role"] = $r[5];
