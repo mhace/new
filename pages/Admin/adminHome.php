@@ -130,7 +130,7 @@
                                             <tbody id="user-list-data" class="users-list">
                                                
                                             <?php
-                                                $sql = "SELECT users.*, officeName  FROM users 
+                                                $sql = "SELECT users.*, officeName, users.officeID  FROM users 
                                                 INNER JOIN offices on users.officeID = offices.officeID
                                                 WHERE users.user_ID not in (?, ?);";
 
@@ -154,7 +154,15 @@
                                                         <td>" .$row['officeName'] ."</td>
                                                         " .
                                                         '<td>
-                                                            <button class="btn btn-success" data-id="'.$row["user_ID"].'" style="color:white"  data-toggle="modal" data-target="#editDiscountModal">
+                                                            <button class="btn btn-success" 
+                                                            data-id="'.$row["user_ID"].'" 
+                                                            data-username="'.$row["username"].'" 
+                                                            data-password="'.$row["password"].'" 
+                                                            data-firstName="'.$row["firstName"].'" 
+                                                            data-lastName="'.$row["lastName"].'" 
+                                                            data-userType="'.$row["userType"].'" 
+                                                            data-officeID="'.$row["officeID"].'" 
+                                                            style="color:white"  data-toggle="modal" data-target="#editDiscountModal">
                                                                 Edit
                                                             </button>
                                                             <button type"button" data-id="'.$row["user_ID"].'" class="btn btn-danger btn-sm px-3 py-2" data-toggle="modal" data-target="#deleteConfirmation">
@@ -202,7 +210,7 @@
                                 <div class="row mb-3">
                                     <label for="editRole" class="col-sm-3 col-form-label">new Role</label>
                                     <div class="col-sm-9">
-                                        <select class="form-select" id="editRole" name="role">
+                                        <select class="form-select" id="editUserType" name="role">
                                         <option value="Administrator">Administrator</option>
                                         <option value="Requester">Requester</option>
                                         <option value="Reviewer">Reviewer</option>
@@ -320,7 +328,7 @@
                             <div class="row mb-3">
                                 <label for="password" class="col-sm-3 col-form-label">Password :</label>
                                 <div class="col-sm-9">
-                                    <input type="password" class="form-control" id="password" name= "password"placeholder="Enter Password Here">
+                                    <input type="password" class="form-control" id="password" name= "password" placeholder="Enter Password Here">
                                 </div>
                             </div>
 
@@ -441,7 +449,19 @@
              $(document).ready(function() {
                 $('#editDiscountModal').on('show.bs.modal', function(e) {
                     var id = $(e.relatedTarget).data('id');
+                    var username = $(e.relatedTarget).data('username');
+                    var password = $(e.relatedTarget).data('password');
+                    var firstName = $(e.relatedTarget).data('firstname');
+                    var lastName = $(e.relatedTarget).data('lastname');
+                    var userType = $(e.relatedTarget).data('usertype');
+                    var officeID = $(e.relatedTarget).data('officeID');
                     $('#edit-submit').val(id)
+                    $('#editUsername').val(username)
+                    $('#editPassword').val(password)
+                    $('#editFirstName').val(firstName)
+                    $('#editLastName').val(lastName)
+                    $('#editUserType').val(userType)
+                    $('#editOffice').val(officeID)
                 });
 
                 $('#deleteConfirmation').on('show.bs.modal', function(e) {
