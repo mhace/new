@@ -95,7 +95,9 @@
                                             <th scope="col">Office</th>
                                             <th scope="col">Document Title</th>
                                             <th scope="col">Document filename</th>
+                                            <th scope="col">Comment</th>
                                             <th scope="col">Status</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody id="user-products-data" class="products-list">
@@ -103,7 +105,7 @@
                                                     
                                         include '../../php/db.php';
 
-                                        $sql = "SELECT document.*, officeName FROM document 
+                                        $sql = "SELECT document.*, officeName , comment FROM document 
                                         INNER JOIN offices on document.officeid = offices.officeID
                                         WHERE document.userid = ".$_SESSION['uid'];
 
@@ -127,7 +129,10 @@
                                                 $ar[] = "<tr>
                                                 <td>" .$row['officeName'] . "</td>
                                                 <td>" .$row['documentName'] . "</td>
-                                                <td>" .$row['documentFile'] ."</td>$status
+                                                <td>" .$row['documentFile'] ."</td>
+                                                <td>" .$row['comment'] ."</td>
+                                                
+                                                $status
                                                 </tr>";
                                                 
                                             }
