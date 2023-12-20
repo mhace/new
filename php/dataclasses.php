@@ -1,4 +1,4 @@
-<!-- tentative lang. might change dahil sa ibang properties (eg. $userID) basing sa DB IF may changes  -->
+tentative lang. might change dahil sa ibang properties (eg. $userID) basing sa DB IF may changes 
 
 <?php
 

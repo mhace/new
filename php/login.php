@@ -11,7 +11,6 @@
         $password = trim($_POST['password']);
 
         // Use prepared statements to prevent SQL injection
-        //$stmt = "SELECT * FROM users WHERE username = ? AND password = ?";
         $query = "Select * from users where username = ? and password = ?";
         $st = $conn->prepare($query);
         $st->bind_param('ss',$username,$password);
@@ -36,6 +35,10 @@
             }
             if ($r[5] == 'Reviewer'){
                 echo '<script>window.location.href = "../pages/Reviewer/reviewerHome.php"</script>';
+            }if($r[5]== 'Admin') {
+                echo '<script>window.location.href = "../pages/Admin/adminHome.php"</script>';
+            }else{
+                echo 'not found';
             }
 
 
