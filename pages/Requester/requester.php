@@ -18,6 +18,9 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="/img/logo.png" type="stylesheet" />
 
+    <!-- Footer -->
+    <link rel="stylesheet" href="../../css/footer.css" />
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
@@ -95,7 +98,9 @@
                                             <th scope="col">Office</th>
                                             <th scope="col">Document Title</th>
                                             <th scope="col">Document filename</th>
+                                            <th scope="col">Comment</th>
                                             <th scope="col">Status</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody id="user-products-data" class="products-list">
@@ -103,7 +108,7 @@
                                                     
                                         include '../../php/db.php';
 
-                                        $sql = "SELECT document.*, officeName FROM document 
+                                        $sql = "SELECT document.*, officeName , comment FROM document 
                                         INNER JOIN offices on document.officeid = offices.officeID
                                         WHERE document.userid = ".$_SESSION['uid'];
 
@@ -127,7 +132,10 @@
                                                 $ar[] = "<tr>
                                                 <td>" .$row['officeName'] . "</td>
                                                 <td>" .$row['documentName'] . "</td>
-                                                <td>" .$row['documentFile'] ."</td>$status
+                                                <td>" .$row['documentFile'] ."</td>
+                                                <td>" .$row['comment'] ."</td>
+                                                
+                                                $status
                                                 </tr>";
                                                 
                                             }
@@ -143,6 +151,11 @@
                     </div>
                 </div>
             </div>
+        <!-- Footer -->
+        <div class="footer">
+            <p>&copy; Team Two One</p>
+        </div>
+        <!-- End of Footer -->
         </div>
     </div>
     </div>

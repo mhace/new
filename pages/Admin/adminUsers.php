@@ -20,6 +20,9 @@
         <!-- Favicon -->
         <link rel="shortcut icon" href="/img/logo.png" type="stylesheet" />
 
+        <!-- Footer -->
+        <link rel="stylesheet" href="../../css/footer.css" />
+
         <!-- Bootstrap CSS -->
         <link
             rel="stylesheet"
@@ -181,8 +184,13 @@
                     </div>
                     <!-- Users table Container -->
                 </div>
+        <!-- Footer -->
+        <div class="footer">
+            <p>&copy; Team Two One</p>
+        </div>
+        <!-- End of Footer -->
             </div>
-            <!-- admin-dashboard-column -->
+        <!-- admin-dashboard-column -->
 
 
              <!-- Modal for Editing Document Information -->
@@ -420,7 +428,6 @@
             </div>
         </div>
 
-    
         <!-- custom script -->
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
