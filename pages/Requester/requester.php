@@ -116,11 +116,20 @@
                                         $ar = [];
                                         if ($res->num_rows > 0) {
                                             while ($row = $res->fetch_assoc()) {
+                                                if ($row['documentStatus'] == "return") {
+                                                    $status = "<td>
+                                                        <a class='btn btn-success' href='http://localhost:3000/download?filename=".$row['documentFile']."'>Download</a>
+                                                        <button type='button' data-id='".$row['documentID']."' class='btn btn-success' data-toggle='modal' data-target='#editDocument'> Edit </button>
+                                                    </td>";
+                                                } else {
+                                                    $status = "<td>".$row['documentStatus']."</td>";
+                                                }
                                                 $ar[] = "<tr>
                                                 <td>" .$row['officeName'] . "</td>
                                                 <td>" .$row['documentName'] . "</td>
-                                                <td>" .$row['documentFile'] ."</td>
-                                                <td>" .$row['documentStatus'] ."</td> </tr> ";
+                                                <td>" .$row['documentFile'] ."</td>$status
+                                                </tr>";
+                                                
                                             }
                                         }
                                         foreach ($ar as $item) {
@@ -138,6 +147,33 @@
     </div>
     </div>
     </div>
+
+    <div class="modal fade" id="editDocument">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                <form action="http://localhost:3000/editupload" method="POST" enctype="multipart/form-data">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Document</h4>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                            <div class="inputField">
+                                <div class="row mb-3">
+                                    <label for="files" class="col-sm-3 col-form-label">Edit Document<label>
+                                    <div class="col-sm-9">
+                                        <input type="file" id="upload" accept=".doc, .docx, .pdf" name="files" required>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" name="id" id="documentid" class="btn btn-primary submit submit-editUser">Edit</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
 
     <!-- Logout Modal -->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -175,6 +211,13 @@
             if (links.href.includes(activePageLocation)) {
                 links.classList.add('active');
             }
+        });
+
+        $(document).ready(function() {
+            $('#editDocument').on('show.bs.modal', function(e) {
+                    var id = $(e.relatedTarget).data('id');
+                    $('#documentid').val(id)
+            });
         });
     </script>
 

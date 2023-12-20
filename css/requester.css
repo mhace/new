@@ -170,9 +170,6 @@ body {
     border: 2px solid var(--black);
 }
 
-.card-body .btn{
-    float: right;
-}
 
 .card{
     

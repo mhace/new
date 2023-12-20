@@ -105,7 +105,6 @@
                                         <div class="box">
                                             <div class="input-bx">
                                                 <h2 class="upload-area-title">Upload File</h2>
-                                                
                                                     <input type="file" id="upload" accept=".doc, .docx, .pdf" name="files" required multiple>
                                                     <!-- <label for="upload" class="uploadlabel">
                                                         <span><i class="fa fa-cloud-upload-alt"></i></span>

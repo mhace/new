@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser');
 const express = require('express')
 const uploadMiddleware = require('./upload');
+const edituploadMiddleware = require('./editupload');
 const mysql = require('mysql')
 const connection = mysql.createPool({
   connectionLimit : 10,
@@ -36,6 +37,10 @@ app.get('/download', function(req, res){
     res.download(file);
   }
   
+});
+
+app.post('/editupload', edituploadMiddleware, (req, res) => {
+  res.redirect('http://localhost/drt/pages/Requester/requester.php');
 });
 
 
