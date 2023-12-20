@@ -258,8 +258,6 @@
                                             $st->execute();
 
                                             $res = $st->get_result();
-                                            $r = $res->fetch_row();
-                                            //echo $r;
 
                                             $ar = [];
 
