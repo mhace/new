@@ -18,6 +18,9 @@
         <!-- Favicon -->
         <link rel="shortcut icon" href="/img/logo.png" type="stylesheet" />
 
+        <!-- Footer -->
+        <link rel="stylesheet" href="../../css/footer.css" />
+
         <!-- Bootstrap CSS -->
         <link
             rel="stylesheet"
@@ -129,6 +132,11 @@
                         </div>
                     </div>
                 </div>
+            <!-- Footer -->
+            <div class="footer">
+                <p>&copy; Team Two One</p>
+            </div>
+             <!-- End of Footer -->
             </div>
             </div>
         </div>
