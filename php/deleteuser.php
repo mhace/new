@@ -12,6 +12,8 @@
         $obj = array(
             "user_ID" => $id,
         );
+
+        
         $data = json_encode($obj);
         $event = "Deleted user account";
         $uid = $_SESSION["uid"];
@@ -20,7 +22,8 @@
         $logevent = "INSERT INTO logs value (NULL,'$event',NULL,'$data', $uid)";
         $sqlCreate = $conn->query($logevent);
     
-    echo '<script>window.location.href = "../pages/Admin/adminUsers.php"</script>';
+    echo '<script>alert("Succesfully Deleted User!")</script>';
+    echo '<script>window.location.href = "../pages/Admin/adminHome.php"</script>';
     }
 
 ?>

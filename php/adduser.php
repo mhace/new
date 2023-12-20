@@ -39,7 +39,7 @@
 
 
     echo '<script>alert("Succesfully Created!")</script>';
-    echo '<script>window.location.href = "../pages/Admin/adminUsers.php"</script>';
+    echo '<script>window.location.href = "../pages/Admin/adminHome.php"</script>';
     }
 
 ?>
