@@ -4,6 +4,8 @@
         header("Location: ../../");
         die();
     }
+
+    include '../../php/db.php';
     
 
 ?>
@@ -104,25 +106,30 @@
                                 <table  id="menu-items-data" class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th scope="col">USERNAME</th>
+                                            <th scope="col">Timestamp</th>
+                                            <th scope="col">User</th>
                                             <th scope="col">EVENT</th>
-                                            <th scope="col">DATE</th>
-                                            <th scope="col">ACTION</th>
                                         </tr>
                                     </thead>
                                     <tbody id="user-products-data" class="products-list">
-                                        <tr>
-                                            <td>SampleUsername</td>
-                                            <td>SampleEvent</td>
-                                            <td>SampleDate</td>
-                                            <td>
-                                                <!-- Action buttons (edit and delete) -->
-                                                <button type="button" class="btn btn-danger btn-sm px-3 py-2" onclick="deleteInfo(index)">
-                                                    <i class="bi bi-trash"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <!-- Add more rows as needed -->
+                                        <?php
+                                            $sql = "SELECT logs.*, CONCAT(firstName, ' ', lastName) as user FROM logs 
+                                                    INNER JOIN users on users.user_ID = logs.uid";
+                                            $st = $conn->prepare($sql);
+                                            $st->execute();
+                                            $res = $st->get_result();
+                                            $ar = [];
+                                              
+                                            if ($res->num_rows > 0) {
+                                                while ($row = $res->fetch_assoc()) {
+                                                    echo "<tr>
+                                                            <td>".$row['timestamp']."</td>
+                                                            <td>".$row['user']."</td>
+                                                            <td>".$row['event']."</td>
+                                                        </tr>";
+                                                }
+                                            }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>

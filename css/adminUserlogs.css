@@ -258,7 +258,6 @@ li {
 
 th{
     font-size: 12px;
-    text-align: center;
 }
 
 td {
@@ -266,5 +265,4 @@ td {
     white-space: normal !important;
     word-wrap: break-word;
     vertical-align: middle;
-    text-align: center;
 }

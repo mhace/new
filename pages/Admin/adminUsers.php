@@ -133,35 +133,30 @@
                                             <tbody id="user-list-data" class="users-list">
                                                
                                             <?php
-                                                
-
                                                 $sql = "SELECT users.*, officeName  FROM users 
-                                                INNER JOIN offices on users.officeID = offices.officeID;";
+                                                INNER JOIN offices on users.officeID = offices.officeID
+                                                WHERE users.user_ID not in (?, ?);";
 
                                                 $st = $conn->prepare($sql);
-                    
+                                                $st->bind_param("ii", $adminid, $uid);
+
+                                                $adminid = 1;
+                                                $uid = $_SESSION["uid"];
+
                                                 $st->execute();
 
                                                 $res = $st->get_result();
-                                                $r = $res->fetch_row();
-                                                //echo $r;
-
-                                                $ar = [];
-                                                
 
                                                 if ($res->num_rows > 0) {
                                                     while ($row = $res->fetch_assoc()) {
                                                     
-                                                        $ar[] = "<tr><td>" .$row['userType'] . "</td>
+                                                        echo "<tr><td>" .$row['userType'] . "</td>
                                                         <td>" .$row['username'] ."</td>
                                                         <td>" .$row['firstName'] ."</td>
                                                         <td>" .$row['lastName'] ."</td>
                                                         <td>" .$row['officeName'] ."</td>
                                                         " .
-    
                                                         '<td>
-                                                            
-                        
                                                             <button class="btn btn-success" data-id="'.$row["user_ID"].'" style="color:white"  data-toggle="modal" data-target="#editDiscountModal">
                                                                 Edit
                                                             </button>
@@ -173,9 +168,6 @@
                                                         
                                                     }
                                                 }
-                                                foreach ($ar as $item) {
-                                                    echo $item;
-                                                }  ;
                                             ?>
 
                                                 
