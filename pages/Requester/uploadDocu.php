@@ -78,6 +78,11 @@
         <!-- Main Component -->
         <div class="main">
             <div class="container-fluid navbar-container">
+            <div class="col-sm-1 pt-3">
+                            <button class="btn" type="button" data-bs-theme="dark">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                    </div>
             </div>
             <div class="row">
                 <div class="col users-label">
@@ -220,6 +225,14 @@
             }
     
         })
+    </script>
+
+    <script>
+                // script for sidebar
+                const toggler = document.querySelector(".btn");
+                toggler.addEventListener("click", function () {
+                document.querySelector("#sidebar").classList.toggle("collapsed");
+                });
     </script>
 
 </body>

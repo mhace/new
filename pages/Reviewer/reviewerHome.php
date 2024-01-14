@@ -75,6 +75,11 @@
             <!-- Main Component -->
             <div class="main">
                 <div class="container-fluid navbar-container">
+                <div class="col-sm-1 pt-3">
+                            <button class="btn" type="button" data-bs-theme="dark">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                    </div>
                 </div>
                 <div class="container mt-1">
                     <div class="row justify-content-end"> <!-- Add this row to align content to the right -->
@@ -266,17 +271,25 @@
             const navLinks = document.querySelectorAll(".nav-link");
             navLinks.forEach(links => {
                 if(links.href.includes(activePageLocation)){
-                   links.classList.add('active');
-                 }
-             });
+                links.classList.add('active');
+                }
+            });
 
-             $(document).ready(function() {
+            $(document).ready(function() {
                 $('#editDiscountModal').on('show.bs.modal', function(e) {
                     var id = $(e.relatedTarget).data('id');
                     $('#edit-submit').val(id)
                 });
             });
-           </script>
+        </script>
+
+    <script>
+        // script for sidebar
+        const toggler = document.querySelector(".btn");
+        toggler.addEventListener("click", function () {
+        document.querySelector("#sidebar").classList.toggle("collapsed");
+        });
+    </script>
 
     </body>
 </html>
