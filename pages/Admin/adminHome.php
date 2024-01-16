@@ -29,6 +29,10 @@
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
             integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
             crossorigin="anonymous" />
+
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
+
+
         <!-- Boostrap Javascript -->
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
@@ -98,21 +102,10 @@
                 </div>
                 <div class="ps-5 row  border rounded bg-light user-search-bar">
                     <div class="col-10 d-flex flex-wrap align-content-center">
-                        <div class="input-group mb-1">
-                            <input type="text" class="form-control" id="searchUserField" placeholder="Search User" aria-label="User Search" aria-describedby="button-addon2">
-                            <button class="btn btn-primary" type="button" id="searchUserBtn">Search</button>
-                        </div>
                     </div>
                     <div class="col d-flex flex-wrap align-content-center">
                         <div class="input-group mb-1 d-flex flex-wrap align-content-center justify-content-center">
-                            <button class="btn btn-primary addUsersButton" type="button" id="addUserBtn" data-toggle="modal"
-                            data-target="#addUserModal">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
-                                    <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
-                                    <path d="M8.256 14a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z"/>
-                                </svg>
-                                Add User
-                            </button>
+                           
                         </div>
                     </div>
                      <!-- Users table Container -->
@@ -121,6 +114,14 @@
                             <div class="card shadow-2-strong">
                                 <div class="card-body">
                                     <div class="table-responsive">
+                                    <button class="btn btn-primary addUsersButton" type="button" id="addUserBtn" data-toggle="modal"
+                                        data-target="#addUserModal">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
+                                                <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
+                                                <path d="M8.256 14a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z"/>
+                                </svg>
+                                Add User
+                            </button>
                                         <table id="orderTable" class="table table-striped">
                                             <thead>
                                                 <tr>
@@ -436,6 +437,7 @@
         <!-- custom script -->
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
@@ -484,6 +486,8 @@
                     }
 
                 });
+
+                let table = new DataTable('#orderTable');
 
             });
 

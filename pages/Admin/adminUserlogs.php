@@ -29,6 +29,9 @@
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
             integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
             crossorigin="anonymous" />
+        
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
+        
         <!-- Boostrap Javascript -->
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
@@ -176,6 +179,7 @@
     <!--End of Modal-->
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
@@ -197,6 +201,10 @@
                 const toggler = document.querySelector(".btn");
                 toggler.addEventListener("click", function () {
                 document.querySelector("#sidebar").classList.toggle("collapsed");
+                });
+
+                $(document).ready(function() {
+                    let table = new DataTable('#menu-items-data');                    
                 });
         </script>
 

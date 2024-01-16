@@ -26,6 +26,9 @@
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
             integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
             crossorigin="anonymous" />
+
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
+        
         <!-- Boostrap Javascript -->
         <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
@@ -85,9 +88,9 @@
                     <div class="row justify-content-end"> <!-- Add this row to align content to the right -->
                         <div class="col-auto">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary bi bi-bell-fill " data-bs-toggle="modal" data-bs-target="#notificationModal">
+                            <!-- <button type="button" class="btn btn-primary bi bi-bell-fill " data-bs-toggle="modal" data-bs-target="#notificationModal">
                                 Notifications
-                            </button>
+                            </button> -->
                         </div>
                     </div>
             
@@ -119,11 +122,7 @@
                     </div>
                 </div>
                     <div class="ps-5 row  border rounded bg-light user-search-bar">
-                        <div class="col-10 d-flex flex-wrap align-content-center">
-                            <div class="input-group mb-1">
-                                <input type="text" class="form-control" id="searchUserField" placeholder="Search Document" aria-label="User Search" aria-describedby="button-addon2">
-                                <button class="btn btn-primary" type="button" id="searchUserBtn">Search</button>
-                            </div>
+                        
                         </div>
                                     <!-- List of documents -->
                                     <div class="row justify-content-center px-5 mt-3">
@@ -260,6 +259,7 @@
     <!--End of Modal-->
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
@@ -288,6 +288,10 @@
         const toggler = document.querySelector(".btn");
         toggler.addEventListener("click", function () {
         document.querySelector("#sidebar").classList.toggle("collapsed");
+        });
+
+        $(document).ready(function() {
+                let table = new DataTable('#menu-items-data');                    
         });
     </script>
 
