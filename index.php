@@ -6,7 +6,7 @@
             echo '<script>window.location.href = "./pages/Admin/adminHome.php"</script>';
         }
         if ($_SESSION['role'] == 'Requester'){
-            echo '<script>window.location.href = "./pages/Requester/requester.php"</script>';
+            echo '<script>window.location.href = "http://'.$_SERVER['SERVER_NAME'].':3000/requester"</script>';
         }
         if ($_SESSION['role'] == 'Reviewer'){
             echo '<script>window.location.href = "./pages/Reviewer/reviewerHome.php"</script>';

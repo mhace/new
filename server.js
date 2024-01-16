@@ -1,5 +1,7 @@
 const bodyParser = require('body-parser');
-const express = require('express')
+const express = require('express');
+var session = require('express-session')
+const path = require('path');
 const uploadMiddleware = require('./upload');
 const edituploadMiddleware = require('./editupload');
 const mysql = require('mysql')
@@ -11,22 +13,72 @@ const connection = mysql.createPool({
   database: 'teamtwoone-final'
 })
 
-
 var app = express()
 const port = 3000;
 
-
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  // cookie: { secure: false }
+}));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const upload = require('./upload');
+app.use(express.static('css'));
+app.use(express.static('img'));
 
-app.get('/', (req, res) => {
-  console.log(__dirname)
-  res.sendFile(__dirname+"/pages/test_upload.html")
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
+
+app.get('/authenticate', (req, res) => {
+  if ( typeof req.session.uid === 'undefined' && req.query.uid ){
+    
+    req.session.regenerate(function (err) {
+      if (err) next(err)
+      req.session.uid = req.query.uid;
+
+      req.session.save(function (err) {
+        if (err) return next(err)
+        res.redirect('/requester')
+      })
+    })
+    
+  } else {
+    res.redirect('http://localhost:3000/logout');
+  }
+});
+
+app.get('/requester', (req, res) => {
+
+  if ( typeof req.session.uid === 'undefined'){
+    res.redirect('http://localhost:3000/logout');
+  } else {
+    const session_id = req.session.uid;
+    const query = "SELECT document.*, officeName , comment FROM document \
+                  INNER JOIN offices on document.officeid = offices.officeID \
+                  WHERE document.userid = ?";
+
+    connection.query(query, [session_id], (err, result) => {
+      if (err) throw err
+
+      res.render('requester', {data: result, session_id: session_id});
+    });
+  }
+});
+
+app.get('/uploadDocu', (req, res) => {
+  if ( typeof req.session.uid === 'undefined'){
+    res.redirect('http://localhost:3000/logout');
+  } else {
+    const session_id = req.session.uid;
+    res.render('uploadDocu', {session_id: session_id});
+  }
+
+  
 });
 
 app.post('/upload', uploadMiddleware, (req, res) => {
-  res.redirect('http://localhost/drt/pages/Requester/requester.php');
+  res.redirect('/requester');
 });
 
 app.get('/download', function(req, res){
@@ -40,7 +92,7 @@ app.get('/download', function(req, res){
 });
 
 app.post('/editupload', edituploadMiddleware, (req, res) => {
-  res.redirect('http://localhost/drt/pages/Requester/requester.php');
+  res.redirect('/requester');
 });
 
 
@@ -82,6 +134,11 @@ app.post('/updateDocument', (req, res) => {
   });
 
 
+});
+
+app.get('/logout',  (req, res) => {
+  req.session.destroy();
+  res.redirect('http://localhost/drt/php/logout.php');  
 });
 
 

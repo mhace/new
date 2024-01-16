@@ -31,7 +31,7 @@
                 echo '<script>window.location.href = "../pages/Admin/adminHome.php"</script>';
             }
             if ($r[5] == 'Requester'){
-                echo '<script>window.location.href = "../pages/Requester/requester.php"</script>';
+                echo '<script>window.location.href = "http://'.$_SERVER['SERVER_NAME'].':3000/authenticate?uid='.$r[0].'"</script>';
             }
             if ($r[5] == 'Reviewer'){
                 echo '<script>window.location.href = "../pages/Reviewer/reviewerHome.php"</script>';
