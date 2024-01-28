@@ -170,6 +170,7 @@
                                                     <td>
                                                         <a class='btn btn-success' href='http://localhost:3000/download?filename=".$row['documentFile']."'>Download</a>
                                                         <button type='button' data-id='".$row['documentID']."' class='btn btn-success btn-sm px-3 py-2' data-toggle='modal' data-target='#editDiscountModal'> Edit </button>
+                                                        <button type='button' data-id='".$row['documentID']."' class='btn btn-success btn-sm px-3 py-2' data-toggle='modal' data-target='#'> View </button>
                                                     </td>
                                                     </tr>";
                                                 }
