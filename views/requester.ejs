@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="logo.png" type="stylesheet" />
 
     <!-- Footer -->
-    <link rel="stylesheet" href="footer.css" />
+    <link rel="stylesheet" href="/footer.css" />
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
@@ -29,7 +29,7 @@
     <!-- icons:font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
-    <link rel="stylesheet" href="requester.css" />
+    <link rel="stylesheet" href="/requester.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0"></script>
 </head>
@@ -109,9 +109,9 @@
                                                 <td><%= document.comment %></td>
                                                 <% if(document.documentStatus == "return"){ %>
                                                     <td>
-                                                        <a class="btn btn-success" href="/download?filename=<%= document.documentFile %>">Download</a>
+                                                        <a class="btn btn-primary" href="/download?filename=<%= document.documentFile %>">Download</a>
                                                         <button type="button" data-id="<%= document.documentID %>" class="btn btn-success" data-toggle="modal" data-target="#editDocument"> Submit </button>
-                                                        <button type="button" data-id="<%= document.documentID %>" class="btn btn-success" data-toggle="modal" data-target="#"> View </button>
+                                                        <a target="_blank" href="/viewDocument/<%= document.documentID %>" type="button" class="btn btn-secondary"> View </button>
                                                     </td>
                                                 <% } else{ %>  
                                                     <td><%= document.documentStatus %></td>

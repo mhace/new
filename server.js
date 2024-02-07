@@ -4,7 +4,12 @@ var session = require('express-session')
 const path = require('path');
 const uploadMiddleware = require('./upload');
 const edituploadMiddleware = require('./editupload');
-const mysql = require('mysql')
+const mysql = require('mysql');
+const mammoth = require('mammoth');
+const pdf = require('pdf-parse');
+const fs = require('fs');
+
+
 const connection = mysql.createPool({
   connectionLimit : 10,
   host: 'localhost',
@@ -26,6 +31,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static('css'));
 app.use(express.static('img'));
+
 app.use((req, res, next) => {
   res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
   res.header('Expires', '-1');
@@ -156,6 +162,53 @@ app.get('/documents', (req, res) => {
 
   
 });
+
+app.get('/viewDocument/:document_id', (req, res) => {
+  const document_id = req.params.document_id;
+
+  const query = "SELECT document.*, officeName , comment FROM document \
+                INNER JOIN offices on document.officeid = offices.officeID \
+                where document.documentID = ?";
+
+  connection.query(query,[document_id], (err, result) => {
+    if (err) throw err
+
+    const row = result[0];
+
+    if (row) {
+      const file = `${__dirname}/uploads/`+ row.documentFile;
+      const extension = path.extname(file).toLowerCase();
+
+      if (extension === '.pdf') {
+        const dataBuffer = fs.readFileSync(file);
+
+        pdf(dataBuffer).then(data => {
+            const textContent = data.text;
+            res.render('documentViewer', {data: `<p>${textContent}</p>`});
+        }).catch(error => {
+            console.error(error);
+        });
+
+      } else if (extension === '.docx') {
+        mammoth.convertToHtml({path: file})
+        .then(function(result){
+            var html = result.value; 
+
+            res.render('documentViewer', {data: html});
+
+        }).catch(function(error) {
+            console.error(error);
+        });
+
+      } 
+    }
+
+  });
+
+
+  
+});
+
 
 app.get('/logout',  (req, res) => {
   req.session.destroy();
