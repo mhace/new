@@ -26,6 +26,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static('css'));
 app.use(express.static('img'));
+app.use((req, res, next) => {
+  res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+  res.header('Expires', '-1');
+  res.header('Pragma', 'no-cache');
+  next();
+});
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
@@ -137,9 +143,18 @@ app.post('/updateDocument', (req, res) => {
 });
 
 app.get('/documents', (req, res) => {
-  res.json({"foo": "bar"});
+  const session_id = req.session.uid;
+  const query = "SELECT document.*, officeName , comment FROM document \
+                INNER JOIN offices on document.officeid = offices.officeID";
+
+  connection.query(query, (err, result) => {
+    if (err) throw err
+
+    res.json(result);
+  });
 
 
+  
 });
 
 app.get('/logout',  (req, res) => {
