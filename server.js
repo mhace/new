@@ -136,6 +136,12 @@ app.post('/updateDocument', (req, res) => {
 
 });
 
+app.get('/documents', (req, res) => {
+  res.json({"foo": "bar"});
+
+
+});
+
 app.get('/logout',  (req, res) => {
   req.session.destroy();
   res.redirect('http://localhost/drt/php/logout.php');  
